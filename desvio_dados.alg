@@ -9,9 +9,22 @@ var
 inicio
 
 escreval ("Digite o nome do aluno: ")
-leia(aluno)
-escreva ("Digite o nome do professor: ")
 leia(professor)
+escreval("Nome de professor salvo.")
+escreval("-" * 30)
+escreva ("Digite o nome do professor: ")
+leia(aluno)
+escreval("Nome de aluno salvo.")
+escreval("-" * 30)
 
+reserva <- aluno
+aluno <- professor
+professor <- reserva
+
+escreval("-=-=-=-=-= Correção dos Dados =-=-=-=-=-")
+escreval("Nome do aluno: " + aluno)
+escreval("Nome do professor: " + professor)
+escreval("Dados corrigidos com sucesso!")
+escreva("-" * 30)
 
 fimalgoritmo
