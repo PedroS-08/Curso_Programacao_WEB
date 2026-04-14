@@ -15,7 +15,7 @@ inicio
         leia(usuario)
         escreval ("Digite sua senha: ")
         leia(senha)
-        se (usuario <> "admin") e (senha <> "senai123") entao
+        se (usuario <> "admin") ou (senha <> "senai123") entao
             escreval ("⚠️ Erro: Credenciais inválidas, tente novamente!")
             tentativas <- tentativas - 1
             escreval(tentativas, " tentativas restantes!")
