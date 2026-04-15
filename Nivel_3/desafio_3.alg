@@ -4,6 +4,8 @@ var
 
     usuario: caractere
     senha: caractere
+    tentativas: inteiro
+    login: logico
 
 inicio
 
@@ -21,7 +23,7 @@ inicio
             escreval(tentativas, " tentativas restantes!")
         fimse
     ate (usuario = "admin") e (senha = "senai123") ou tentativas = 0
-    escreval ("✅ ACESSO LIBERADO: Usuário " + usuario, "!")
+    escreval ("✅ ACESSO LIBERADO: Bem vindo " + usuario, "!")
     login <- verdadeiro
     se login = falso entao
         escreval("❌ ERRO: ACESSO BLOQUEADO")
