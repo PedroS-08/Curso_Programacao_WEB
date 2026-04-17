@@ -1,17 +1,91 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!-- Declara que o ficheiro é um docuumento HTML -->
+ <!DOCTYPE html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-content-width, initial-scale=1.0">
-    <title>Aula 1</title>
-</head>
+ <!-- Inicia o código HTML e define o idioma da página -->
+ <html lang="pt">
+     
+    <!-- A tag <head> guarda as configurações invisíveis da página (Metadados, título, autor, etc.) -->
+    <head>
+        <!-- Título que aparecerá na aba -->
+        <title>Quiz para programadores</title>
 
-<body>
-    <h1>That's my first web page</h1>
-    <h2>It'll be pretty</h2>
-    <h3>What do i can put here?</h3>
-    <p style="color: wheat; background-color: black;">Today, we started to create our first web page</p>
-</body>
+        <!-- Define a codificação de caracteres -->
+        <meta charset="UTF-8">
+        
+        <!-- Faz com que a página seja responsível/adaptável aos dispositivos e telas mais usuais -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Descrição do site e características resumidas -->
+        <meta name="description" content="Teste para programadores">
+        
+        <meta name="author" content="Pedro Silveira">
 
-</html>
+        <meta name="keywords" content="aula, web">
+        <!-- Fechamento Obrigatório da tag head -->
+    </head>
+
+    <!-- Corpo da página, tudo inserido aqui será visto pelo usuário -->
+    <body style="background-color: rgb(37, 52, 79);">
+
+        <!-- Cabeçalho da página -->
+        <header>
+            <!-- Como boas práticas no desenvolvimento web, recomenda-se apenas um h1 por aba -->
+            <h1 style="color: rgb(213, 184, 147);">Quiz para programadores</h1>
+
+            <!-- Parágrafo de descrição -->
+            <p style="color: rgb(97, 120, 145);">Teste seus conhecimentos em programação e veja se está preparado</p>
+
+
+        </header>
+        <!-- Conteúdo principal -->
+        <main>
+            <!-- Delimita de forma organizada partes específicas do site -->
+            <section>
+            <h2 style="color: rgb(82, 116, 153);">Sobre o teste</h2>
+            <p style="color: rgb(213, 184, 147);">Esse teste foi desenvolvido para testar seus conhecimentos em <strong>Programação</strong>, como:<br> Linguagens de programação, Lógica de programação, Conceitos básicos e outros.<br> Você encontrará diferentes tipos de perguntas: Múltipla escolha, texto, datas, imagens, etc.<br> Você poderá também encontrar alguns acrônimos <abbr title="Hipertext Markup Language">HTML</abbr> e <abbr title="Cascating  Style Sheets">CSS</abbr>. Que serão comumente usados<br> em questões relacionadas à <em>Desenvolvimento Web</em>. <i>Boa Sorte!</i></p>
+
+            <!-- Propriedades de Parágrafos 
+            strong: Destacar o texto
+            em: Dá ênfase ao texto
+            br: Quebra de linha
+            abbr: Cria uma abreviação
+            b: Negrito
+            i: Itálico
+            u: Sublinhar
+            -->
+
+            </section>
+
+            <!-- Início do teste
+            Questão 1 -->
+            <section>
+                <h3 style="color: rgb(219, 218, 202);">Questão 1: Qual linguagem é utilizada para estruturar páginas na WEB?</h3>
+
+                <!-- A tag form é uma das mais importantes de qualquer sistema interativo da Web. Ela é o "envelope" que agrega os campos de input e define para onde e como os dados preenchidos pelo usuário serão enviados para o servidor -->
+                <form>
+                    <!-- A tag input representa o link com a lógica a ser implementada no backend -->
+                    <input type="radio" value="Python" id="q1a" name="pergunta1">
+                    <label style="color: rgb(219, 218, 202);" for="q1a">Python</label>
+                    <!-- Label para tornar o nome da opção visível para o usuário -->
+                    <br><input type="radio" value="JavaScript" id="q1b" name="pergunta1">
+                    <label style="color: rgb(219, 218, 202);" for="q1b">JavaScript</label>
+
+                    <br><input type="radio" value="C++" id="q1c" name="pergunta1">
+                    <label style="color: rgb(219, 218, 202);" for="q1c">C++</label>
+
+                    <br><input type="radio" value="HTML" id="q1d" name="pergunta1">
+                    <label style="color: rgb(219, 218, 202);" for="q1d">HTML</label>
+
+                </form>
+            </section>
+        </main>
+        <!-- Rodapé da página -->
+        <footer>
+
+        </footer>
+
+        <!-- Fechamento Obrigatório da tag body -->
+    </body>
+
+    <!-- Fechamento Obrigatório da página -->
+ </html>
