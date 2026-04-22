@@ -9,6 +9,7 @@ var
 
 inicio
 
+// Valores iniciais, todos tecnicos no corredor
 A <- "Corredor"
 B <- "Corredor"
 C <- "Corredor"
@@ -29,10 +30,8 @@ repita
 
     escreval("Tempo gasto: ", t_total)
     escreval("Digite 2 técnicos")
-    
     escreval("Técnico 1: ")
     leia(tec1)
-    
     escreval("Técnico 2: ")
     leia(tec2)
     se tec2 <> "A" e tec2 <> "B" e tec2 <> "C" e tec2 <> "D" entao
@@ -44,7 +43,7 @@ repita
     senao
         tempo <- 0
 
-        // Define o maior tempo entre os dois técnicos
+        // Verifica o tempo a ser usado (sempre o maior)
         se tec1 = "A" entao
             se tempo < 1 entao
                 tempo <- 1
@@ -93,7 +92,7 @@ repita
             fimse
         fimse
 
-        // Movimenta técnico 1
+        // Tecnico 1
         se tec1 = "A" entao
             se A = "Corredor" entao
                 A <- "Sala de servidores"
@@ -134,7 +133,7 @@ repita
             fimse
         fimse
 
-        // Movimenta técnico 2
+        // Tecnico 2
         se tec2 = "A" entao
             se A = "Corredor" entao
                 A <- "Sala de servidores"
@@ -175,13 +174,15 @@ repita
             fimse
         fimse
 
+        // Calcula o tempo total
         t_total <- t_total + tempo
 
         escreval("Tempo desta rodada: " + tempo + " min")
         escreval("Tempo total: " + t_total + " min")
         escreval("-" * 40)
     fimse
-ate (A = "Sala de servidores" e B = "Sala de servidores" e C = "Sala de servidores" e D = "Sala de servidores") ou t_total > 17
+// Fim da repeticao ate todos tecnicos estiverem na sala ou tempo maior ou igual a 17 min
+ate (A = "Sala de servidores" e B = "Sala de servidores" e C = "Sala de servidores" e D = "Sala de servidores") ou t_total >= 17
 
 escreval("Tempo final: " + t_total + " min")
 
