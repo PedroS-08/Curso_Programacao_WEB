@@ -28,7 +28,6 @@ escreval("-" * 50)
 
 repita
 
-    escreval("Tempo gasto: ", t_total)
     escreval("Digite 2 técnicos")
     escreval("Técnico 1: ")
     leia(tec1)
