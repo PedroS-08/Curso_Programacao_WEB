@@ -1,160 +1,526 @@
-<!-- Declara que o ficheiro é um docuumento HTML -->
- <!DOCTYPE html>
+<!-- Declara que este arquivo é um documento HTML5 moderno, garantindo que o navegador saiba como interpretá-lo -->
+<!DOCTYPE html>
 
- <!-- Inicia o código HTML e define o idioma da página -->
- <html lang="pt">
-     
-    <!-- A tag <head> guarda as configurações invisíveis da página (Metadados, título, autor, etc.) -->
+<!-- Inicia o código HTML e define o idioma principal da página como Português do Brasil (pt-BR) -->
+<html lang="pt-BR">
+
+<!-- A tag <head> (cabeçalho) guarda as configurações invisíveis da página (metadados, links de estilo, título da aba) -->
     <head>
-        <!-- Título que aparecerá na aba -->
-        <title>Quiz para programadores</title>
 
-        <!-- Define a codificação de caracteres -->
+        <!-- A tag <title> define o título que vai aparecer na aba (separador) do navegador de internet -->
+        <title>Teste para Programadores</title>
+
+        <!-- A tag <meta> com atributo charset="UTF-8" define a codificação de caracteres para suportar acentos e cedilhas (á, ç, ã, etc.) -->
         <meta charset="UTF-8">
-        
-        <!-- Faz com que a página seja responsível/adaptável aos dispositivos e telas mais usuais -->
+
+        <!-- Faz com que a página seja responsiva, ou seja, que o layout se adapte automaticamente a telas de celulares e tablets -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <!-- Descrição do site e características resumidas -->
-        <meta name="description" content="Teste para programadores">
-        
-        <meta name="author" content="Pedro Silveira">
+        <!-- Descrição do site e suas características. Isso ajuda os motores de busca (como o Google) a entenderem sobre o que é a página -->
+        <meta name="description" content="Um quiz interativo para Programadores">
 
-        <meta name="keywords" content="aula, web">
-        <!-- Fechamento Obrigatório da tag head -->
+        <!-- Define o nome do autor responsável pela criação desta página -->
+        <meta name="author" content="Ricardo Silva">
+        
+        <!-- Cria o link para a pasta de estilos CSS para dar cor e formato à página (atualmente este trecho está comentado/desativado) -->
+        <!--<link rel="stylesheet" href="./Css/style.css"-->
+
+    <!-- Fecha a seção <head>, indicando que as configurações invisíveis terminaram -->
     </head>
 
-    <!-- Corpo da página, tudo inserido aqui será visto pelo usuário -->
+    <!-- A tag <body> (corpo) é a parte principal. Tudo o que colocarmos aqui dentro será visível para o usuário/jogador na tela -->
     <body>
 
-        <!-- Cabeçalho da página -->
+        <!-- A tag <header> agrupa conteúdos introdutórios da página (como um cabeçalho visual) -->
         <header>
-            <!-- Como boas práticas no desenvolvimento web, recomenda-se apenas um h1 por aba -->
-            <h1>Quiz para programadores</h1>
+            
+            <!-- A tag <hr> desenha uma linha horizontal na tela para separar os conteúdos visualmente -->
+            <hr>
+            <hr>
 
-            <!-- Parágrafo de descrição -->
-            <p>Teste seus conhecimentos em programação e veja se está preparado</p>
+            <!-- Como boas práticas é recomendado o uso de apenas um <h1> (Título Principal de nível 1) por página para o tema principal -->
+            <!-- <h1 style="color: red">Teste interativo para programadores</h1> -- CSS inline (estilização direta na tag, está desativada aqui) -->
+            
+            <!-- Título principal visível no topo da página -->
+            <h1>Teste interativo para programadores</h1>
 
-
+            <!-- A tag <p> (parágrafo) é usada para blocos de texto comuns -->
+            <p>Teste seus conhecimentos em programação e veja qual a sua pontuação</p>
+            
+            <!-- Outra linha horizontal para separar o cabeçalho do restante da página -->
+            <hr>
+            
+        <!-- Fecha a seção introdutória (cabeçalho da página) -->
         </header>
-        <!-- Conteúdo principal -->
+        
+        <!-- Outra linha horizontal -->
+        <hr>
+
+        <!-- A tag <main> engloba o conteúdo principal do site. Isso ajuda os leitores de tela e a organização semântica do código -->
         <main>
-            <!-- Delimita de forma organizada partes específicas do site -->
+
+            <!-- INTRODUÇÃO DO QUIZZ -->
+            <!-- A tag <section> divide a página em seções com assuntos específicos -->
             <section>
-            <h2>Sobre o teste</h2>
-            <p>Esse teste foi desenvolvido para testar seus conhecimentos em <strong>Programação</strong>, como:<br> Linguagens de programação, Lógica de programação, Conceitos básicos e outros.<br> Você encontrará diferentes tipos de perguntas: Múltipla escolha, texto, datas, imagens, etc.<br> Você poderá também encontrar alguns acrônimos <abbr title="Hipertext Markup Language">HTML</abbr> e <abbr title="Cascating  Style Sheets">CSS</abbr>. Que serão comumente usados<br> em questões relacionadas à <em>Desenvolvimento Web</em>. <i>Boa Sorte!</i></p>
+                
+                <!-- O <h2> é o título de nível 2 (subtítulo) usado para separar os blocos dentro da página -->
+                <h2>Sobre esse quizz</h2>
+                
+                <!-- Início do parágrafo explicativo -->
+                <p>
+                    Este teste foi desenvolvido para terinar seus conhecimentos em 
+                    
+                    <!-- A tag <strong> deixa o texto em negrito, indicando que a palavra tem forte importância -->
+                    <strong>Programação</strong> como:
+                    
+                    <!-- A tag <br> força uma quebra de linha (pula para a linha de baixo) -->
+                    <br> Linguagem de programação, Lógica de programação, conceitos básicos entre outros.
+                    
+                    <br> Você encontrará diferentes tipos de perguntas como:
+                    
+                    <br> Multipla escolha, texto, Datas, imagens etc.
+                    
+                    <br> Você também poderá encontrar alguns acrônimos 
+                    
+                    <!-- A tag <abbr> (abreviação) permite colocar uma sigla e, usando "title", mostrar o significado quando o mouse passa por cima -->
+                    <abbr title="Hipertxt Markup Language (Linguagem de marcação Hipertexto)"> HTML </abbr> e 
+                    <abbr title="Cascading Style Sheets (Folhas de Estilo em Cascata)">CSS</abbr>, 
+                    
+                    <br> que são comumente usados em questões relacionadas em 
+                    
+                    <!-- A tag <em> deixa o texto em itálico, dando ênfase na pronúncia ou na leitura do termo -->
+                    <em>Desenvolvimento Web</em>
+                    
+                    <!-- Duas quebras de linha para dar mais espaço -->
+                    <br><br> 
+                    
+                    <!-- A tag <b> aplica negrito visual e a <i> aplica itálico visual simultaneamente -->
+                    <b><i>Boa Sorte!!</i></b>
+                
+                <!-- Fecha o parágrafo -->
+                </p>
+                
+                <!-- Linha horizontal separadora -->
+                <hr>
+                
+                <!--
+                    Propriedades de Parágrafos (textos) - Guia de Tags HTML de Texto:
+                    <strong> -- Dá forte importância ao texto (Negrito Semântico)
+                    <em>     -- Dá ênfase no texto escolhido (Itálico Semântico)
+                    <br>     -- Quebra de linha
+                    <abbr>   -- Cria uma abreviação explicativa ao passar o mouse
+                    <b>      -- Negrito (Visual)
+                    <i>      -- Itálico (Visual)
+                    <u>      -- Sublinhado
+                    <hr>     -- Divide a página com uma linha horizontal
+                    <small>  -- Diminui um pouco o tamanho da letra
+                    <del>    -- Exibe o texto riscado (como se tivesse sido deletado)
+                    <sup>    -- Texto sobrescrito (elevado, como em uma potência matemática)
+                    <sub>    -- Texto subscrito (rebaixado, como em fórmulas químicas)
+                    <mark>   -- Marca (destaca) o texto com uma cor de fundo, como um marcador de texto
+                -->
+                
+            <!-- Fecha a seção da introdução -->
+            </section> 
 
-            <!-- Propriedades de Parágrafos 
-            strong: Destacar o texto
-            em: Dá ênfase ao texto
-            br: Quebra de linha
-            abbr: Cria uma abreviação
-            b: Negrito
-            i: Itálico
-            u: Sublinhar
-            -->
-
-            </section>
-
-            <!-- Início do teste
-            Questão 1 -->
+            <!-- PERGUNTA 1 >> MÚLTIPLA ESCOLHA -->
             <section>
-                <h3>Questão 1: Qual linguagem é utilizada para estruturar páginas na WEB?</h3>
-
-                <!-- A tag form é uma das mais importantes de qualquer sistema interativo da Web. Ela é o "envelope" que agrega os campos de input e define para onde e como os dados preenchidos pelo usuário serão enviados para o servidor -->
+                
+                <!-- Título da primeira pergunta -->
+                <h2>Pergunta 1: Qual linguagem é usada para estruturar páginas WEB?</h2>
+                
+                <!-- A tag <form> indica que aqui começa um formulário de coleta de dados preenchidos pelo usuário -->
                 <form>
-                    <!-- A tag input representa o link com a lógica a ser implementada no backend -->
-                    <input type="radio" value="Python" id="q1a" name="pergunta1">
-                    <label for="q1a">Python</label>
-                    <!-- Label para tornar o nome da opção visível para o usuário -->
-                    <br><input type="radio" value="JavaScript" id="q1b" name="pergunta1">
-                    <label for="q1b">JavaScript</label>
+                    
+                    <!-- A tag <input type="radio"> cria um botão de seleção única (só pode escolher um). "value" é o que o sistema lê, "id" é o nome único do botão -->
+                    <input type="radio" value="Python" id="p1a" name="pergunta1">
+                    <!-- "name='pergunta1'" agrupa as opções: todas que tem este mesmo 'name' pertencem à mesma pergunta -->
 
-                    <br><input type="radio" value="C++" id="q1c" name="pergunta1">
-                    <label for="q1c">C++</label>
+                    <!-- O nome descrito na opção não aparece sozinho. É necessário apresentar em uma tag <label> que se conecta ao <input> através do "for" que aponta para o "id" -->
+                    <label for="p1a">Python</label>
+                    
+                    <!-- Pula de linha -->
+                    <br>
 
-                    <br><input type="radio" value="HTML" id="q1d" name="pergunta1">
-                    <label for="q1d">HTML</label>
+                    <!-- Segunda opção de múltipla escolha (HTML) -->
+                    <input type="radio" value="HTML" id="p1b" name="pergunta1">
+                    <label for="p1b">HTML</label><br>
 
+                    <!-- Terceira opção (JavaScript) -->
+                    <input type="radio" value="JavaScript" id="p1c" name="pergunta1">
+                    <label for="p1c">JavaScript</label><br>
+
+                    <!-- Quarta opção (Ruby) -->
+                    <input type="radio" value="Ruby" id="p1d" name="pergunta1">
+                    <label for="p1d">Ruby</label><br>
+
+                <!-- Fecha o formulário da pergunta 1 -->
                 </form>
+                <!-- O tipo "radio" permite o formato de Múltipla Escolha, onde apenas 1 é selecionável -->
+                
+            <!-- Fecha a seção da primeira pergunta -->
             </section>
+            
+            <hr>
 
-            <!-- Tabela de pontuação -->
+            <!-- PERGUNTA 2 >> Texto Aberto -->
             <section>
-                <h2>Tabela de pontuação</h2>
-                <!-- Monta a estrutura de uma tabela -->
-                <table border="1" >
-                    <!-- A tag tr refere-se a linha da tabela -->
-                    <thead>
+
+                <!-- Título da segunda pergunta -->
+                <h2>Pergunta 2: Na URL https://www.google.com o trecho "google.com" é conhecido como:</h2>
+
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- No caso da caixa de texto o "type" é "text". O "placeholder" é um texto dica (fantasma) que desaparece quando o usuário começa a digitar -->
+                    <input type="text" id="p2" name="pergunta2" placeholder="Digite sua resposta">
+            
+                <!-- Fecha o formulário -->
+                </form>
+
+            <!-- Fecha a seção -->
+            </section>
+            
+            <hr>
+
+            <!-- PERGUNTA 3 >> Campo de Senha -->
+            <section>
+
+                <!-- Título da terceira pergunta -->
+                <h2>Pergunta 3: Escreva um exemplo de senha segura:</h2>
+
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- O "type" é "password". Isso faz com que os caracteres digitados apareçam como asteriscos ou bolinhas para proteger a privacidade -->
+                    <input type="password" id="p3" name="pergunta3" placeholder="Digite sua resposta">
+                
+                <!-- Fecha o formulário -->
+                </form>
+            
+           <!-- Fecha a seção -->
+           </section>
+           
+           <hr>
+
+           <!-- PERGUNTA 4 >> Data (Calendário) -->
+           <section>
+
+                <!-- Título da quarta pergunta -->
+                <h2>Perguta 4: Em que ano o HTML lançou sua primeira versão? </h2>
+                
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- O "type" "date" mostra um box (caixa) com formato de calendário para o usuário selecionar uma data -->
+                    <input type="date" id="p4" name="pergunta4">
+
+                <!-- Fecha o formulário -->
+                </form>
+
+           <!-- Fecha a seção -->
+           </section>
+           
+           <hr>
+
+           <!-- PERGUNTA 5 >> Seleção múltipla (Checkbox) -->
+           <section>
+
+                <!-- Título da quinta pergunta -->
+                <h2>Pergunta 5: Quais dessas tecnologias são consideradas linguagens de programação?</h2>
+                
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- O "type" "checkbox" cria uma caixa de seleção onde é possível marcar várias opções (múltipla escolha múltipla) -->
+                    <input type="checkbox" value="Python" id="p5a" name="pergunta5">
+                    <!-- Rótulo para a primeira checkbox -->
+                    <label for="p5a">Python</label>
+
+                    <!-- Segunda opção checkbox -->
+                    <input type="checkbox" value="JavaScript" id="p5b" name="pergunta5">
+                    <label for="p5b">JavaScript</label>
+
+                    <!-- Terceira opção checkbox -->
+                    <input type="checkbox" value="Ruby" id="p5c" name="pergunta5">
+                    <label for="p5c">HTML</label>
+
+                    <!-- Quarta opção checkbox -->
+                    <input type="checkbox" value="Java" id="p5d" name="pergunta5">
+                    <label for="p5d">Java</label>
+
+                    <!-- Quinta opção checkbox -->
+                    <input type="checkbox" value="CSS" id="p5e" name="pergunta5">
+                    <label for="p5e">CSS</label>
+
+                <!-- Fecha o formulário -->
+                </form>
+
+           <!-- Fecha a seção -->
+           </section>
+           
+           <hr>
+
+           <!-- PERGUNTA 6 >> Upload de Arquivo -->
+           <section>
+
+                <!-- Título da sexta pergunta -->
+                <h2>Pergunta 6: Faça o upload de um arquivo que contenha um código HTML:</h2>
+                
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- O "type" "file" mostra um botão para procurar/abrir um arquivo de dentro do computador do usuário -->
+                    <input type="file" id="p6" name="pergunta6">
+
+                <!-- Fecha o formulário -->
+                </form> 
+                
+           <!-- Fecha a seção -->
+           </section>
+           
+           <hr>
+
+           <!-- PERGUNTA 7 >> Menu Suspenso (Dropdown) -->
+            <section>
+
+                <!-- Título da sétima pergunta -->
+                <h2>Pergunta 7: Selecione o atributo do input que define o seu tipo.</h2>
+                
+                <!-- Inicia o formulário -->
+                <form> 
+
+                    <!-- Não utilizamos a tag "input" aqui, mas a tag <select>, que monta a caixa expansível (menu dropdown) de seleção -->
+                    <select id="p7" name="pergunta7">
+
+                        <!-- As tags <option> definem cada um dos itens individuais que aparecem dentro da lista do menu suspenso -->
+                        <option value="id">id</option>
+                        <option value="class">class</option>
+                        <option value="type">type</option>
+                        <option value="name">name</option>
+                        <option value="placeholder">placeholder</option>
+                    
+                    <!-- Fecha a lista de seleção -->
+                    </select>
+
+                <!-- Fecha o formulário -->
+                </form> 
+                    
+            <!-- Fecha a seção -->
+            </section>
+            
+            <hr>
+
+            <!-- PERGUNTA 8: >> Adicionando Imagens na página -->
+            <section>
+
+                <!-- Título da oitava pergunta -->
+                <h2>Qual linguagem de pogramação é representada pelo logotipo abaixo?</h2>
+
+                <!-- A tag <figure> delimita um bloco visual que contém mídia independente (geralmente uma imagem) e sua legenda -->
+                <figure>
+                    <!-- A tag <img> é usada para carregar imagens. "src" é o caminho/arquivo. "alt" é o texto lido para cegos ou quando a imagem falha -->
+                    <img src="https://img.icons8.com/color/1200/java-coffee-cup-logo--v2.jpg" alt="Logotipo de uma linguagem de programação" width="150" height="150">
+                    
+                    <!-- A tag <figcaption> cria o texto de legenda para a imagem contida no <figure> -->
+                    <figcaption>Figura 1 - Logotipo de uma linguagem de programação</figcaption>
+
+                    <!--
+                        Resumo dos atributos e tags de Imagens:
+                        <figcaption> -- Cria Legenda para a imagem
+                        <img>        -- Habilita o navegador a implementar imagens na tela
+                        src          -- Solicita o caminho/endereço onde a imagem está salva (Source)
+                        alt          -- Texto alternativo/Descrição da imagem para leitores de acessibilidade
+                    -->
+                <!-- Fecha a figure -->
+                </figure>
+
+                <!-- Inicia o formulário de resposta para a imagem -->
+                <form> 
+
+                    <!-- Caixa de texto para o usuário digitar a resposta -->
+                    <input type="text" id="p8" name="pergunta8" placeholder="Digite sua resposta">
+                
+                <!-- Fecha o formulário -->
+                </form>
+                
+            <!-- Fecha a seção -->
+            </section>
+            
+            <hr>
+
+            <!-- Tabela de Pontuação -->
+            <section>
+
+                <!-- Título do bloco -->
+                <h2>Tabela de Pontuação</h2>
+
+                <!-- Nota: Historicamente alguns navegadores antigos tinham comportamentos estranhos.
+                     No original, o <tbody> foi colocado fora da <table> como um artifício/hack, 
+                     porém o padrão correto é ter tudo dentro da <table>. 
+                     Aqui mantivemos a sua estrutura original para que você identifique o trecho. 
+                -->
+                <tbody> <!-- Artifício utilizado em navegadores que não mostrem a tabela apenas com a tag "table" -->
+                    
+                    <!-- Monta a estrutura de uma tabela, "border" define a largura da borda em pixels -->
+                    <table border="1">
+
+                        <!-- A tag <thead> delimita o cabeçalho oficial da tabela -->
+                        <thead>
+                            <!-- A tag <tr> (Table Row) cria uma Linha da tabela. A tradução "row" significa linha, não coluna -->
+                            <tr>
+                                <!-- A tag <th> (Table Header) cria as células especiais de cabeçalho da tabela, geralmente exibidas em negrito e centralizadas -->
+                                <th> Pontuação </th>
+                                <th> Descrição </th>
+                            <!-- Fecha a linha -->
+                            </tr>
+                        <!-- Fecha o cabeçalho -->
+                        </thead>
+                        
+                        <!-- Linha de dados: Embora a tag seja <tr> (Row=Linha), as tags <td> formam as colunas dentro dessa linha -->
                         <tr>
-                            <th>Pontuação</th><th>Descrição</th>
+                            <!-- A tag <td> (Table Data) cria as células de dados comuns -->
+                            <td> 0 - 2 </td>
+                            <td> Não foi bem! Tente novamente</td>
                         </tr>
-                    </thead>
-                    <tr>
-                        <td> 0 - 2</td><td>Não foi bem! Tente novamente!</td>
-                    </tr>
-                    <tr>
-                        <td> 3 - 4</td><td>Precisa melhorar muito ainda!"</td>
-                    </tr>
-                    <tr>
-                        <td> 5 - 6</td><td>Regular, mas não é o suficiente!</td>
-                    </tr>
-                    <tr>
-                        <td> 7 - 8</td><td>Muito bom! Você está aprendendo</td>
-                    </tr>
-                    <tr>
-                        <td> 9 - 10</td><td>Parabéns programador!</td>
-                    </tr>
-                    <tfoot>
-                        <td colspan="2">Boa sorte na próxima</td>
-                    </tfoot>
-                </table>
+
+                        <!-- Segunda linha de dados -->
+                        <tr>
+                            <td> 3 - 4 </td>
+                            <td> Precisa melhorar muito ainda!</td>
+                        </tr>
+
+                        <!-- Terceira linha de dados -->
+                        <tr>
+                            <td> 5 - 6 </td>
+                            <td> Regular mas não é o suficiente</td>
+                        </tr>
+
+                        <!-- Quarta linha de dados -->
+                        <tr>
+                            <td> 7 - 8 </td>
+                            <td> Muito bom!! Você está aprendendo</td>
+                        </tr>
+
+                        <!-- Quinta linha de dados -->
+                        <tr>
+                            <td> 9 - 10 </td>
+                            <td> Parabéns Programador!</td>
+                        </tr>
+
+                        <!-- A tag <tfoot> delimita o Rodapé da tabela. Assim como o <thead>, agrupa a seção de forma semântica -->
+                        <tfoot> 
+                            <!-- Nota: Faltou a tag <tr> ao redor da <td> aqui no original, o navegador tentará corrigir automaticamente -->
+                            <!-- O atributo "colspan='2'" informa que essa célula de tabela deve ocupar a largura de 2 colunas normais -->
+                            <tr>
+                                <td colspan="2"> Boa sorte na próxima!! </td>
+                            </tr>
+                        <!-- Fecha o rodapé -->
+                        </tfoot>
+
+                    <!-- Fecha a tag da tabela -->
+                    </table>
+                <!-- Fecha o tbody (artifício visual antigo) -->
+                </tbody>
+
+            <!-- Fecha a seção -->
             </section>
+            
+            <hr>
 
             <section>
-                <!-- Lista de respostas -->
-                 <h2>Verifique suas respostas</h2>
-                 <!-- Como na tabela, para trabalharmos com listas, primeiramente precisamos, informar a intenção através da tag ul  -->
+                
+                <!-- Lista de Respostas (Gabarito) -->
+                <h2>Verifique suas respostas</h2>
 
-                 <!-- ul: habilita a lista
-                  ol: a lista será de numerios
-                  li: lista de pontos-->
-                  <details>
+                <!-- 
+                    Como na tabela, para trabalharmos com listas de forma correta, precisamos informar a intenção através de tags agrupadoras:
+                    <ul> -- Habilita a criação de uma Lista Não Ordenada (marcadores de bolinhas)
+                    <ol> -- Habilita a criação de uma Lista Ordenada (numerada 1, 2, 3...)
+                    <li> -- Define cada item (ponto ou número) específico da lista (Item da Lista)
+                -->
+
+                <!-- A tag <details> cria uma caixa expansível/retrátil, escondendo os detalhes contidos dentro dela até que o usuário clique nela -->
+                <details>
+
+                    <!-- A tag <summary> é o título visível na caixa do <details>, indicando o que o usuário está clicando -->
                     <summary>Clique para visualizar as respostas</summary>
-                    <li>HTML</li>
-                    <li>Domínio</li>
-                    <li>F_p8n17aj</li>
-                    <li>1991</li>
-                    <li>Python, JavaScript, Java</li>
-                    <li>*html</li>
-                    <li>type</li>
-                    <li>Java</li>
-                  </details>
+                    
+                    <!-- Para as listas funcionarem corretamente dentro dos padrões HTML, elas deveriam estar abraçadas por um <ul> ou <ol> -->
+                    <ul>
+                        <!-- Cada <li> é uma linha de resposta -->
+                        <li>HTML</li>
+                        <li>Domínio</li>
+                        <li>Ab3@_lkRt12</li>
+                        <li>1991</li>
+                        <li>Python, JavaScript, Java</li>
+                        <li>*.html</li>
+                        <li>type</li>
+                        <li>Java</li>
+                    </ul>
+                    
+                <!-- Fecha a caixa de expansão do widget details -->
+                </details>  
+                
+                <!-- Pula uma linha -->
+                <br>
+                
+            <!-- Fecha a seção -->
             </section>
 
             <section>
-                <!-- Formulario de feedback -->
+
+                <!-- Início do Formulário de Feedback final -->
                 <form>
+
+                    <!-- A tag <fieldset> desenha uma borda/quadro em volta dos elementos de um formulário e agrupa eles logicamente -->
                     <fieldset>
-                        <legend>Informações de contato: </legend>
+
+                        <!-- A tag <legend> é a legenda do <fieldset>, ela aparece no meio da linha superior da borda desenhada -->
+                        <legend>Informações de contato:</legend>
+
+                        <!-- A tag <label> informa o que deve ser digitado. O "for" associa este texto ao ID do input "name" -->
                         <label for="name">Informe seu nome:</label>
-                        <input type="text" id="name" placeholder="Digite seu nome">
-                        <br><label for="email">Informe seu email:</label>
-                        <input type="email" id="email" placeholder="usuario@email.com">
-                        <br><label for="cmt">Comentário</label>
-                        <br><textarea type="text" name="Comentário" id="cmt" placeholder="Deixe aqui seu comentário" maxlength="300" rows="4" cols="50"></textarea>
+                        <!-- O "type='text'" coleta texto simples (nome) -->
+                        <input type="text" id="name" name="name"><br><br>
+
+                        <!-- Rótulo para o campo de email -->
+                        <label for="email">Informe seu Email:</label>
+                        <!-- O "type='email'" aciona a validação automática do navegador para garantir que o texto inserido tenha um "@" válido -->
+                        <input type="email" id="email" name="email"><br><br>
+
+                        <!-- Rótulo com o texto "Comentários" em negrito <b> -->
+                        <label for="comment"><b>Comentários</b>:</label><br>
+
+                        <!-- A tag <textarea> cria uma caixa de texto maior, capaz de aceitar várias linhas. "rows" diz quantas linhas de altura tem e "cols" quantas colunas de largura. -->
+                        <textarea id="comment" name="comentarios" rows="4" cols="50" placeholder="Digite seus comentários aqui..." ></textarea>
+                    
+                    <!-- Fecha o grupo de campos delineados do formulário -->
                     </fieldset>
+
+                <!-- Fecha o formulário de feedback -->
                 </form>
+                
+            <!-- Fecha a seção do formulário final -->
             </section>
+
+        <!-- Fim de todo o conteúdo principal semântico do site -->
         </main>
-        <!-- Rodapé da página -->
+
+        <!-- A tag <footer> (Rodapé) é a última área importante da página, usada para informações de copyrights, contatos, links extras -->
         <footer>
-            <p>Todos os direitos reservados ₢</p>
-            <p>Para mais testes <a href="pages\page1.html" >Clique aqui!</a></p>
+            
+            <!-- Parágrafo simples com os direitos autorais do criador -->
+            <p> Teste de Programadores. Todos os direitos reservados</p>
+            
+            <!-- A tag <a> cria um link (âncora) de navegação para fora ou dentro do site. "href" indica a página destino e "target='_blank'" faz com que ela abra numa nova guia do navegador -->
+            <p>Para acessar mais testes <a href="pages/page1.html" target="_blank">Clique aqui</a></p>
+
+        <!-- Fecha o rodapé do documento -->
         </footer>
 
-        <!-- Fechamento Obrigatório da tag body -->
+    <!-- Fecha o corpo da página, marcando o fim do que é desenhado na tela -->
     </body>
 
-    <!-- Fechamento Obrigatório da página -->
- </html>
+<!-- Fecha o documento HTML (o navegador sabe que o código da página termina aqui) -->
+</html>
