@@ -1,0 +1,64 @@
+/* Importando fontes personalizadas */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Seletor de todo conteúdo da página */
+* {
+
+    margin: 0.5rem;  /*Espaçamento nas margens -- rem: medida relativa à tela que está sendo apresentada*/
+    padding: 0; /*Espaçamento interno*/
+    box-sizing: border-box; /*Box padrão de todo site*/
+}
+/* Desabilita as tags hr */
+hr {display: none;}
+/* Seletor do corpo da página */
+
+body {
+    background-color: rgb(25, 23, 36);
+    color: rgb(246, 243, 255);
+    font-family: "Work Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    
+}
+
+header {
+    
+    padding: 3rem;
+    border: rgb(85, 103, 182);
+    border-width: 0.3rem;
+    border-style: double;
+    border-radius: 8rem 80rem / 100rem;
+    font-size: 1.150rem;
+    
+}
+
+h1 {
+    color: rgb(136, 158, 255);
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+
+}
+
+main {
+    
+    padding: 2rem;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+section {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+p.introducao {
+
+    text-align: justify;
+    color: rgb(156, 219, 228);
+    
+}
