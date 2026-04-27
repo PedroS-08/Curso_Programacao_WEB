@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+/* Raiz, onde é guardado variáveis que serão, posteriormente usadas */
+:root {
+    --bg-color : #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+/* Efeito de vidro */
+    --text-color: #f8faf6;
+    --primary: #3b82f6;
+    --accent: #8b5cf6;
+    --border-color: rgba(255, 255, 255, 0;1)
+}
+
+
+/* Selecionar tudo do html (todas as tags) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+/* Fundo degradê (135deg indica a inclinação aplicada). Usa-se, também a variável bg-color definida no root */
+    background: linear-gradient(135deg, var(--bg-color), #0a0a0f, #0a0316, var(--bg-color));
+    background-size: 300% 300%;
+/* Cria uma animação - gradientBG, que dura 15s de forma infinita */
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+/* Garantir que o body ocupe, como valor mínimo, 100% da tela */
+    min-height: 100vh; 
+}
+
+/* keyframes cria a 'linha do tempo' de uma animação.
+   Aqui move-se a posição do fundo, gerando o efeito de mudança de cor */
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+    
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(11, 15, 20, 0.8) 0%, rgba(4, 10, 22, 0.705) 100%);
+/* Glasmorphism (Efeito de Vidro Fosco), desfoca tudo que está atrás dele */
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 8rem 80rem / 100rem;
+    box-shadow: 0 10px 0px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 5px 5px rgba(39, 16, 122, 0.644);
+/* Aplica efeito gradiente no texto. Preenchendo o fundo e dizendo para preencher apenas o texto */
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* Esconder as tags hr (Quebras de linha), pois as margens do CSS já farão essa fução */
+hr {display: none;}
+
+section {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+/* Auto centraliza a caixa na tela */
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 800px;
+    border: 1px solid var(--border-color);
+/* Efeito Neon: Múltiplas camadas de brilho. Várias sombras podem ser adicionadas e separadas por vírgula */
+    box-shadow: 0 0 20px rgba(59,130,246,0.4), 0 0 40px rgba(139,92,246,0.2), inset 0 0 10px rgba(255,255,255,0.5);
+/* Cria a animação fadeUp. O forwards ordena que a caixa pare no quadro final da animaçao */
+    animation: fadeUp 0.2s ease-out forwards;
+}
+
+/* FadeUp: as sections surgiram da opacidade 0 e de baixo para cima translateY */
+@keyframes fadeUp {
+    0% {transform: scale(1)}
+    25% {transform: scale(0.98)}
+    50% {transform: scale(0.96)}
+    75% {transform: scale(0.93)}
+    100% {transform: scale(0.9)}
+}
+
+/* Sponge: Usa scale X e Y para esticar e achatar um elemento */
+@keyframes sponge {
+    0% {transform: translateY(0) scale(0);}
+    30% {transform: translateY(0) scale(0.25); }
+    50% {transform: translateY(0) scale(0.5);}
+    70% {transform: translateY(0) scale(0.75);}
+    100% {transform: translateY(0) scale(1);}
+}
+
+/* Hover: ativa o(s) estilo(s) apenas quando o cusor do mouse está sobre esse trecho */
+section:hover {
+    animation: sponge 0.3s ease-out;
+}
+
+/* Agrupamento de formulários */
+fieldset {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+/* Transition cria a suavidade na mudança de estado. Ex: Quando o mouse passa por cima, ou sai depois */
+    transition: all 0.2s ease;
+}
+
+fieldset :hover {
+    border-color: var(--primary);
+/* Cria a borda e aplica o efeito de neon nela. Graças ao hover, tal ação é feita apenas quando o cursor está sobre essa área */
+    box-shadow: 0 0 20px rgba(59,130,246,0.15);
+}
+
+legend {
+    background: var(--bg-color);
+    color: var(--primary);
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--primary);
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(59,130,246,0.2);
+}
+
+/* Estilização de múltiplos tipos de input ao mesmo tempo. Separados por vírgula */
+input[type='text'], input[type='password'], input[type='date'], input[type='email'], select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background: rgba(15,23,42,0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 35px;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select :focus, textarea :focus {
+    outline: none;
+    border-color: var(--border-color);
+    box-shadow: 0 0 10px rgba(139,92,246,0.5);
+}
+
+input[type='radio'], input[type='checkbox'] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: var(--primary);
+}
+
+/* Alinhar imagens e molduras */
+figure {
+/* display flex transforma a figura num container para alinhar elementos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+}
+
+figcaption {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #3bd5e1;
+    font-style: italic;
+}
+
+button {
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;   /*Altera o cursor para uma pequena mão indicando ser clicável*/
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button :hover {
+    transform: scale(1.02);  /*Botão cresce 2% quando o cursor passa sobre ele*/
+    box-shadow: 0 10px 20px rgba(139,92,246,0.4);
+}
+
+/* Tabelas modernas */
+table {
+    width: 100%;
+/* O border collapse junta as bordas das células a fim de formar uma linha única */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(15,23,42,0.6);
+    border-radius: 12px;
+/* O comando overflow hidden esconde tudo que sair do limite que foi arredondado do fundo */
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3), inset 0 0 10px rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+/* Dados da tabela e cabeçalhos */
+th, td {
+    padding: 18px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3 ease;
+}
+
+th {
+/* Gradiente na linha de título */
+    background:  linear-gradient(90deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3));
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+    text-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
+/* Pseudo-classe :nth-child. Seleciona elementos com base em uma fórmula matemática. Even altera a cor de linhas pares; Odd faria o mesmo em linhas ímpares. Criando um efeito 'zebra' */
+tbody tr :nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Destaca a linha da tabela quando o cursor passa sobre */
+tbody tr :hover {
+    background-color: rgba(59,130,246,0.15);
+}
+
+tbody tr :hover td {
+    color: #fff;
+    text-shadow: 0 0 8px var(--primary);
+    padding-left: 20px;
+}
+
+tfoot td {
+    text-align: center;
+    font-weight: 800;
+    color: var(--accent);
+    background: rgba(15,23,42,0.9);
+    border-bottom: none;
+    text-transform: uppercase;
+}
+
+/* Tipografia e textos dinâmicos (Neon/Glass) */
+
+/* Seleciona apenas o h2 com id=s01 */
+h2#s01 {
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
+}
+
+
+p.texto-introducao {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    color: #cbd5e1;
+    padding: 25px;
+    background: rgba(15,23,42,0.6);
+    border-left: 6px solid var(--primary);
+    border-radius: 0 15px 15px 0;
+/* O comando inset joga a sombra para dentro do objeto */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    transition: all 0.4s ease-in-out;
+}
+
+/* Lado dinâmico: efeito de cartão 3d que salta para a direita */
+p.texto-introducao :hover {
+    background: rgba(30,41,59,0.8);
+    transform: translateX(10px);
+    border-left-color: var(--accent);
+    box-shadow: 0 10px 25px rgba(139,92,246,0.3), inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* Pseudo-elemento: ::first-letter.
+   Localiza, matematicamente, a primeira letra do parágrafo */
+p.texto-introducao ::first-letter {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--primary);
+/* Faz o resto do texto contornar a letra flutuante à esquerda */
+    float: left;
+    margin-right: 12px;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(59,130,246,0.8);
+}
