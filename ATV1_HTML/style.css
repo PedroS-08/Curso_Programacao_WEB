@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
 
 /* Raiz, onde é guardado variáveis que serão, posteriormente usadas */
 :root {
-    --bg-color : #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.7);
+    --bg-color : #22223b;
+    --card-bg: #1b263b;
 /* Efeito de vidro */
-    --text-color: #f8faf6;
-    --primary: #3b82f6;
-    --accent: #8b5cf6;
-    --border-color: rgba(255, 255, 255, 0;1)
+    --text-color: #e0e1dd;
+    --primary: #415a77;
+    --accent: #778da9;
+    --border-color: rgba(255, 255, 255, 0.1)
 }
 
 
@@ -20,9 +20,9 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Work Sans', sans-serif;
 /* Fundo degradê (135deg indica a inclinação aplicada). Usa-se, também a variável bg-color definida no root */
-    background: linear-gradient(135deg, var(--bg-color), #0a0a0f, #0a0316, var(--bg-color));
+    background: linear-gradient(135deg,#e0e1dd 0%, #3b59e1 55%, #1b263b 75%);
     background-size: 300% 300%;
 /* Cria uma animação - gradientBG, que dura 15s de forma infinita */
     animation: gradientBG 15s ease infinite;
@@ -45,20 +45,20 @@ body {
 header {
     text-align: center;
     padding: 40px 20px;
-    background: linear-gradient(135deg, rgba(11, 15, 20, 0.8) 0%, rgba(4, 10, 22, 0.705) 100%);
+    background: linear-gradient(to right, #0d1b2a 0%, #11193d 100%);
 /* Glasmorphism (Efeito de Vidro Fosco), desfoca tudo que está atrás dele */
     backdrop-filter: blur(10px);
     margin-bottom: 30px;
-    border: 1px solid var(--border-color);
+    border: none;
     border-radius: 8rem 80rem / 100rem;
-    box-shadow: 0 10px 0px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 0px #0d1b2ae5;
 }
 
 h1 {
     font-size: 2.5rem;
-    text-shadow: 2px 5px 5px rgba(39, 16, 122, 0.644);
+    text-shadow: 2px 2px 5px #4362eee3;
 /* Aplica efeito gradiente no texto. Preenchendo o fundo e dizendo para preencher apenas o texto */
-    background: linear-gradient(to right, var(--primary), var(--accent));
+    background: linear-gradient(to right, #3bd5e1, #3a86ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
@@ -73,32 +73,33 @@ section {
 /* Auto centraliza a caixa na tela */
     margin: 20px auto;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 25px;
     max-width: 800px;
     border: 1px solid var(--border-color);
 /* Efeito Neon: Múltiplas camadas de brilho. Várias sombras podem ser adicionadas e separadas por vírgula */
-    box-shadow: 0 0 20px rgba(59,130,246,0.4), 0 0 40px rgba(139,92,246,0.2), inset 0 0 10px rgba(255,255,255,0.5);
+    box-shadow: 0 0 20px #3b59e1, 0 0 40px #4361ee, inset 0 0 10px #22223b;
 /* Cria a animação fadeUp. O forwards ordena que a caixa pare no quadro final da animaçao */
-    animation: fadeUp 0.2s ease-out forwards;
+    transform: scale(0.95);
+    transform: 0.3s ease-out;
+    animation: fadeUp 0.8s ease-out forwards;
 }
 
 /* FadeUp: as sections surgiram da opacidade 0 e de baixo para cima translateY */
-@keyframes fadeUp {
-    0% {transform: scale(1)}
-    25% {transform: scale(0.98)}
-    50% {transform: scale(0.96)}
-    75% {transform: scale(0.93)}
-    100% {transform: scale(0.9)}
+
+ @keyframes fadeUp {
+    0% {opacity: 1}
+    100% {opacity: 0.7}
 }
 
+
 /* Sponge: Usa scale X e Y para esticar e achatar um elemento */
+
 @keyframes sponge {
-    0% {transform: translateY(0) scale(0);}
-    30% {transform: translateY(0) scale(0.25); }
-    50% {transform: translateY(0) scale(0.5);}
-    70% {transform: translateY(0) scale(0.75);}
-    100% {transform: translateY(0) scale(1);}
-}
+    0% {transform: scale(0.95);}
+    90% {transform: scale(1);}
+    100% {transform: scale(0.98);}
+} 
+
 
 /* Hover: ativa o(s) estilo(s) apenas quando o cusor do mouse está sobre esse trecho */
 section:hover {
@@ -114,7 +115,7 @@ fieldset {
     transition: all 0.2s ease;
 }
 
-fieldset :hover {
+fieldset:hover {
     border-color: var(--primary);
 /* Cria a borda e aplica o efeito de neon nela. Graças ao hover, tal ação é feita apenas quando o cursor está sobre essa área */
     box-shadow: 0 0 20px rgba(59,130,246,0.15);
@@ -144,10 +145,10 @@ input[type='text'], input[type='password'], input[type='date'], input[type='emai
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input:focus, select :focus, textarea :focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--border-color);
-    box-shadow: 0 0 10px rgba(139,92,246,0.5);
+    box-shadow: 0 0 10px #4361ee;
 }
 
 input[type='radio'], input[type='checkbox'] {
@@ -178,7 +179,7 @@ figcaption {
 
 button {
     background: linear-gradient(45deg, var(--primary), var(--accent));
-    color: white;
+    color: #e0e1dd;
     border: none;
     padding: 15px 30px;
     border-radius: 30px;
@@ -190,9 +191,9 @@ button {
     margin-top: 10px;
 }
 
-button :hover {
+button:hover {
     transform: scale(1.02);  /*Botão cresce 2% quando o cursor passa sobre ele*/
-    box-shadow: 0 10px 20px rgba(139,92,246,0.4);
+    box-shadow: 0 10px 20px #4361ee;
 }
 
 /* Tabelas modernas */
@@ -214,31 +215,31 @@ th, td {
     padding: 18px 15px;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
 }
 
 th {
 /* Gradiente na linha de título */
-    background:  linear-gradient(90deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3));
+    background: linear-gradient(90deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3));
     color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.95rem;
-    text-shadow: 0 0 10px rgba(59,130,246,0.6);
+    text-shadow: 0 0 10px #4361ee;
 }
 
 /* Pseudo-classe :nth-child. Seleciona elementos com base em uma fórmula matemática. Even altera a cor de linhas pares; Odd faria o mesmo em linhas ímpares. Criando um efeito 'zebra' */
-tbody tr :nth-child(even) {
+tbody tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
 /* Destaca a linha da tabela quando o cursor passa sobre */
-tbody tr :hover {
+tbody tr:hover {
     background-color: rgba(59,130,246,0.15);
 }
 
-tbody tr :hover td {
-    color: #fff;
+tbody tr:hover td {
+    color: #e0e1dd;
     text-shadow: 0 0 8px var(--primary);
     padding-left: 20px;
 }
@@ -278,22 +279,55 @@ p.texto-introducao {
 }
 
 /* Lado dinâmico: efeito de cartão 3d que salta para a direita */
-p.texto-introducao :hover {
+p.texto-introducao:hover {
     background: rgba(30,41,59,0.8);
     transform: translateX(10px);
-    border-left-color: var(--accent);
-    box-shadow: 0 10px 25px rgba(139,92,246,0.3), inset 0 0 15px rgba(255, 255, 255, 0.05);
+    border-left-color: #3a86ff;
+    box-shadow: 0 10px 25px #4361ee, inset 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 /* Pseudo-elemento: ::first-letter.
    Localiza, matematicamente, a primeira letra do parágrafo */
-p.texto-introducao ::first-letter {
+p.texto-introducao::first-letter {
     font-size: 4rem;
     font-weight: 800;
-    color: var(--primary);
+    color: #e0e1dd;
 /* Faz o resto do texto contornar a letra flutuante à esquerda */
     float: left;
     margin-right: 12px;
     line-height: 1;
-    text-shadow: 0 0 15px rgba(59,130,246,0.8);
+    text-shadow: 0 0 15px #4361ee;
+}
+
+section.rodape {
+    background: linear-gradient(135deg, #10101d, #0c121b);
+    backdrop-filter: blur(15px);
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 45px;
+    max-width: 400px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 20px #3b59e1, 0 0 40px #4361ee;
+    transform: scale(0.95);
+    transform: 0.3s ease-out;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+section.rodape:hover {
+    animation: sponge 0.5s ease-out;
+}
+
+a.link {
+    font-size: 0.9rem;
+    color: #3a86ff;
+}
+
+a.link:hover {
+    color:#5a99ff;
+}
+
+footer {
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    text-align: center;
 }

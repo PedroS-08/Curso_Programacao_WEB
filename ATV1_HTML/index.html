@@ -20,7 +20,7 @@
         <meta name="description" content="Um quiz interativo para Programadores">
 
         <!-- Define o nome do autor responsável pela criação desta página -->
-        <meta name="author" content="Ricardo Silva">
+        <meta name="author" content="Pedro Silveira">
         
         <link rel="stylesheet" href="./style.css">
         <!-- Cria o link para a pasta de estilos CSS para dar cor e formato à página (atualmente este trecho está comentado/desativado) -->
@@ -316,7 +316,7 @@
             <section>
 
                 <!-- Título da oitava pergunta -->
-                <h2>Qual linguagem de pogramação é representada pelo logotipo abaixo?</h2>
+                <h2>Pergunta 8: Qual linguagem de programação é representada pelo logotipo abaixo?</h2>
 
                 <!-- A tag <figure> delimita um bloco visual que contém mídia independente (geralmente uma imagem) e sua legenda -->
                 <figure>
@@ -324,7 +324,7 @@
                     <img src="https://img.icons8.com/ios_filled/512/FFFFFF/java-coffee-cup-logo.png" alt="Logotipo de uma linguagem de programação" width="150" height="150">
                     
                     <!-- A tag <figcaption> cria o texto de legenda para a imagem contida no <figure> -->
-                    <figcaption>Figura 1 - Logotipo de uma linguagem de programação</figcaption>
+                    <figcaption>Logotipo de uma linguagem de programação</figcaption>
 
                     <!--
                         Resumo dos atributos e tags de Imagens:
@@ -349,6 +349,51 @@
             </section>
             
             <hr>
+            
+            <!-- PERGUNTA 9: >>> POO-->
+            <section>
+                <h2>Pergunta 9: Qual significado da sigla POO?</h2>
+
+                <form> 
+
+                    <input type="radio" value="Projeto Ordenado de Operadores" id="p9a" name="pergunta9">
+                    <label for="p9a">Projeto Ordenado de Operadores</label><br>
+
+                    <input type="radio" value="Processamento Operacional Online" id="p9b" name="pergunta9">
+                    <label for="p9b">Processamento Operacional Online</label><br>
+
+                    <input type="radio" value="Programação Ordenada de Objetos" id="p9c" name="pergunta9">
+                    <label for="p9c">Programação Ordenada de Objetos</label><br>
+
+                    <input type="radio" value="Planejamento Oficial de Otimização" id="p9d" name="pergunta9">
+                    <label for="p9d">Planejamento Oficial de Otimização</label><br>
+
+                    <input type="radio" value="Programação Orientada a Objetos" id="p9e" name="pergunta9">
+                    <label for="p9e">Programação Orientada a Objetos</label><br>
+
+                </form>
+            </section>
+
+            <!-- PERGUNTA 10: >>>  -->
+            <section>
+                <h2>Pergunta 10: Marque a opção que contenha o nome de duas pseudo-classes do CSS:</h2>
+                <form>
+                    <input type="radio" value=":color & :linear-gradient" id="p10a" name="pergunta10">
+                    <label for="p10a">:color & :linear-gradient</label><br>
+
+                    <input type="radio" value=":focus & :hover" id="p10b" name="pergunta10">
+                    <label for="p10b">:focus & :hover</label><br>
+
+                    <input type="radio" value=":div & :hover" id="p10c" name="pergunta10">
+                    <label for="p10c">:div & :hover</label><br>
+
+                    <input type="radio" value=":class & :nth-child()" id="p10d" name="pergunta10">
+                    <label for="p10d">:class & :nth-child()</label><br>
+
+                    <input type="radio" value=":focus & :div" id="p10e" name="pergunta10">
+                    <label for="p10e">:focus & :div</label><br>
+                </form>
+            </section>
 
             <!-- Tabela de Pontuação -->
             <section>
@@ -382,31 +427,31 @@
                         <tr>
                             <!-- A tag <td> (Table Data) cria as células de dados comuns -->
                             <td> 0 - 2 </td>
-                            <td> Não foi bem! Tente novamente</td>
+                            <td> Não foi bem! Tente novamente 😟</td>
                         </tr>
 
                         <!-- Segunda linha de dados -->
                         <tr>
                             <td> 3 - 4 </td>
-                            <td> Precisa melhorar muito ainda!</td>
+                            <td> Precisa melhorar muito ainda! ☹️</td>
                         </tr>
 
                         <!-- Terceira linha de dados -->
                         <tr>
                             <td> 5 - 6 </td>
-                            <td> Regular mas não é o suficiente</td>
+                            <td> Regular mas não é o suficiente 🫤</td>
                         </tr>
 
                         <!-- Quarta linha de dados -->
                         <tr>
                             <td> 7 - 8 </td>
-                            <td> Muito bom!! Você está aprendendo</td>
+                            <td> Muito bom!! Você está aprendendo 🙂</td>
                         </tr>
 
                         <!-- Quinta linha de dados -->
                         <tr>
                             <td> 9 - 10 </td>
-                            <td> Parabéns Programador!</td>
+                            <td> Parabéns Programador! 🤩</td>
                         </tr>
 
                         <!-- A tag <tfoot> delimita o Rodapé da tabela. Assim como o <thead>, agrupa a seção de forma semântica -->
@@ -458,6 +503,8 @@
                         <li>*.html</li>
                         <li>type</li>
                         <li>Java</li>
+                        <li>Programação Orientada a Objetos</li>
+                        <li>:focus & :hover</li>
                     </ul>
                     
                 <!-- Fecha a caixa de expansão do widget details -->
@@ -511,12 +558,13 @@
         <!-- A tag <footer> (Rodapé) é a última área importante da página, usada para informações de copyrights, contatos, links extras -->
         <footer>
             
+            <section class="rodape">
             <!-- Parágrafo simples com os direitos autorais do criador -->
-            <p> Teste de Programadores. Todos os direitos reservados</p>
+                <p> Teste de Programadores. Todos os direitos reservados ©</p>
             
             <!-- A tag <a> cria um link (âncora) de navegação para fora ou dentro do site. "href" indica a página destino e "target='_blank'" faz com que ela abra numa nova guia do navegador -->
-            <p>Para acessar mais testes <a href="pages/page1.html" target="_blank">Clique aqui</a></p>
-
+                <p>Para acessar mais testes <a class="link" href="./page1.html" target="_blank">Clique aqui</a></p>
+            </section>
         <!-- Fecha o rodapé do documento -->
         </footer>
 
