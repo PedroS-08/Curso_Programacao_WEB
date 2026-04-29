@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background: linear-gradient(to left, #dcf8ffee, #3f73e2ee);
+    padding: 20px;
+    background-size: 300% 300%;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    color: rgba(255, 254, 249, 0.986);
+}
+
+.container {
+    align-items: center;
+    background-color: rgb(19, 24, 36);
+    padding: 1.5rem;
+    border-radius: 40px;
+    box-shadow: 2px 5px 8px #0e0e11f3;
+}
+
+h1 {
+    color: rgb(118, 102, 255);
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: rgb(255, 255, 238);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.saudacao {
+    color: rgb(135, 121, 255);
+    margin-top: 1.3rem;
+    text-align: center;
+}
+
+
