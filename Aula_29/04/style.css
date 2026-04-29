@@ -1,0 +1,23 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(135deg, #474141, #14141b);
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    color: rgba(255, 254, 249, 0.986);
+}
+
+.container {
+    align-items: center;
+    background-color: rgb(19, 24, 36);
+    padding: 1.5rem;
+    border-radius: 40px;
+    box-shadow: 2px 5px 8px #0e0e11f3;
+}
+
+h1 {
+    color: rgb(118, 102, 255);
+    text-align: center;
+}
