@@ -1,0 +1,103 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(135deg, #474141 , #14141b);
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    color: rgba(255, 254, 249, 0.986);
+}
+
+.container {
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(19, 24, 36);
+    padding: 1.5rem;
+    border-radius: 40px;
+    box-shadow: 2px 5px 8px #0e0e11f3;
+    transform: scale(0.95);
+    border-left: solid 2px #e03753;
+}
+
+.container:hover {
+    box-shadow: 0 4px 15px #36070f;
+    animation: jump 0.4s ease-out;
+}
+
+@keyframes jump {
+    0% {transform: scale(0.95);}
+    90% {transform: scale(1);}
+    100% {transform: scale(0.98);}
+}
+
+h1 {
+    color: #e92929;
+    text-align: center;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    color: rgb(255, 253, 235);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button.add {
+    background: linear-gradient(95deg, #ac0e0e, #e92929, #e03753);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 1rem;
+    /* display: block;
+    margin: 0 auto; */
+}
+
+button.add:hover {
+    background: linear-gradient(95deg, #080808, #1f1f22, #101414);
+    color: #ac0e0e;
+    box-shadow: 0 4px 15px #fd5353;
+    transform: translateY(-0.8px);
+}
+
+button.new {
+    background: linear-gradient(95deg, #b8741b, #f0c331, #ce8a25);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 1rem;
+    /* display: block;
+    margin: 0 auto; */
+}
+
+button.new:hover {
+    background: linear-gradient(95deg, #080808, #1f1f22, #101414);
+    color: #f0c331;
+    box-shadow: 0 4px 15px #ce8a25;
+    transform: translateY(-0.8px);
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    border-radius: 25px;
+    background-color: rgb(19, 24, 36);
+    border: none;
+    border-left: solid 3px rgb(57, 65, 66);
+    color: #fefff9;
+}
+
+input::placeholder {
+    text-align: center;
+    color: #ce8a25;
+}
