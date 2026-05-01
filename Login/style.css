@@ -16,6 +16,7 @@ body {
     font-family: "Righteous", sans-serif;
     display: flex;
     flex-direction: column;
+    width: 300px;
     background: linear-gradient(180deg, rgb(25, 25, 41),rgb(13, 13, 20));
     color: rgb(231, 231, 255);
     border: 2px solid rgb(25, 25, 39);
