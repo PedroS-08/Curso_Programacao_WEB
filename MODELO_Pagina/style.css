@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.icone {
+    font-family: 'Material Symbols Outlined';
+    font-size: 24px;
+    color: #1d223a;
+}
+
+body {
+    background-color: rgb(157, 180, 230);
+}
+
+.cima {
+    background-color: #c3d1ff;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    box-shadow:0 4px 20px rgba(8, 12, 20, 0.137)
+}
+
+.titulo {
+    color: #1d223a;
+    font-size: 14px;
+}
+
+.busca {
+    width: 400px;
+    height: 50px;
+    margin-left: 250px;
+    background-color: transparent;
+    border: 1px solid #303b4e;
+    border-radius: 25px;
+    outline: none;
+    padding: 20px;
+}
+
+.busca::placeholder {
+    text-align: justify;
+    color: #1d223a;
+    font-size: 16px;
+
+}
+
+
+.aba_lateral{
+    width:62px;
+    height: 800px;
+    background:#bbcafa;
+    padding-top:20px;
+    transition:0.7s;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(6, 8, 15, 0.178);
+    position: absolute;
+}
+
+.aba_lateral:hover{
+    width:230px;
+}
+
+.menu{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 22px;
+    cursor:pointer;
+    transition:.25s;
+    color:#1d223a;
+    white-space:nowrap;
+}
+
+.menu:hover{
+    background:rgba(148, 170, 204, 0.425);
+}
+
+.menu_inicio{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 22px;
+    cursor:pointer;
+    transition:.25s;
+    color:#1d223a;
+    background:rgba(55, 80, 139, 0.247);
+    border-left:4px solid #1a53ff;
+}
+
+
+.principal {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #303b4e;
+    width: 850px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+
+.cadastro {
+    text-align: center;
+    color: #303b4e;       
+    font-size: 28px;     
+    margin: 20px;         
+    font-weight: bold;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #303b4e;
+    font-size: 18px;
+    margin: 10px;
+    font-weight: normal;
+}
+
+
+footer {
+    text-align: center;
+    color: #303b4e;
+    font-size: 16px;
+}
+

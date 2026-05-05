@@ -24,6 +24,7 @@ body {
     justify-content: center;
     padding: 1.5rem;
     border-radius: 40px;
+    border-left: 2px solid #3c3adb;
     box-shadow: 2px 5px 8px #0e0e11d7;
     gap: 5px;
 
@@ -37,7 +38,7 @@ input {
     border: 2px solid transparent;
     border-radius: 35px;
     border-color: transparent;
-    color: rgb(231, 244, 255);
+    color: rgb(183, 222, 255);
     font-size: 0.9rem;
     padding-left: 10px;
     transition: border 0.3 ease;
@@ -87,7 +88,7 @@ h1 {
 }
 
 p {
-    background: linear-gradient(to left, #2667b1, #7cd2ec, #1e4bac);
+    background: linear-gradient(to left, #235ea1, #7cd2ec, #153a8a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: "Playwrite NG Modern", cursive;

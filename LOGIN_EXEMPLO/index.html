@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login e Registro Deslizante</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="aba-box">
+            <div class="aba-indicator" id="indicator"></div>
+            <div class="aba-btn active" id="btn-login" onclick="abaForm('login')">Login</div>
+            <div class="aba-btn" id="btn-register" onclick="abaForm('register')">Registro</div>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="form-slider" id="slider">
+
+                <form id="form-login" onsubmit="event.preventDefault(); fazerLogin();">
+                    <h2>Bem Vindo</h2>
+
+                    <div class="input-group">
+                        <label class="digSenha">Digite o nome do usuário:</label>
+                        <input type="text" id="login-user" placeholder="Usuário">
+
+                    </div>
+
+                    <div class="input-group ativo">
+                        <label class="digSenha">Digite a senha:</label>
+                        <input type="password" id="login-pass" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Acessar</button>
+                    <a class="footer-link" onclick="abaForm('register')">Criar nova conta &rarr;</a>
+                </form>
+
+                <form id="form-register" onsubmit="event.preventDefault();">
+                    <h2>Criar uma conta</h2>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Username">
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Registro</button>
+                    <a class="footer-link" onclick="abaForm('login')">&larr; Volta para o login</a>
+
+                    <aside></aside>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
