@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
-        <div class="cima">
-            <h2>Portal do Aluno</h2>
-            <input class="busca" type="text" id="buscar" placeholder="Pesquisar...">
+    <header class="cima">
+        <div class="titulo_cima">Portal do Aluno</div>
+
+        <input class="busca" type="text" id="buscar" placeholder="⌕  Pesquisar...">
+        <div class="user">
+            <div class="icone">mail</div>
+            <div class="icone">account_circle</div>
+            <p class="nome_aluno">Pedro Silveira</p>
         </div>
     </header>
 
@@ -42,10 +46,50 @@
         </div>
     </aside>
     
-    <h1 class="cadastro">Cadastro de Novo Produto - Passo a Passo</h1>
-    <h3 class="subtitulo">Olá Aluno! Preencha as informações abaixo para adicionar um produto.</h3>
-    <div class="principal">
-    </div>
+    <main class="principal">
+        <h1 class="cadastro">Cadastro de Novo Produto - Passo a Passo</h1>
+        <p class="subt">Olá Aluno! Preencha as informações abaixo para adicionar um produto.</p>
+        
+        <section class="tela_cadastro">
+            <div class="form">
+                <h2 class="titulo_info">1. Informações Básicas 📦</h2>
+                <label class="labels">Nome do Produto</label>
+                <input class="ipt" type="text">
+                <label class="labels">Descrição Curta</label>
+                <textarea class="txt"></textarea>
+                <label class="labels">Categoria</label>
+                <select class="slct">
+                    <option value="V">Vestuário</option>
+                    <option value="E">Eletrônicos</option>
+                    <option value="A">Alimentos</option>
+                </select>
+            </div>
+
+
+            <div class="form">
+                <h2 class="titulo_info">2. Definição de Preços 🏷️</h2>
+                <label class="labels">Preço de Venda (R$)</label>
+                <input class="ipt" type="number">
+                <label class="labels">Preço de Custo (R$)</label>
+                <input class="ipt" type="number">
+            </div>
+
+
+            <div class="form">
+                <h2 class="titulo_info">3. Estoque a Mídia 📷</h2>
+                <label class="labels">Quantidade em Estoque</label>
+                <input class="ipt" type="number">
+                <label class="labels">Adicionar Imagem</label>
+                <input class="up_img" type="file" accept="image/*">
+            </div>
+        </section>
+
+        <div class="btn">
+            <button class="bt1">Cadastrar Produto</button>
+            <button class="bt2">Limpar Form</button>
+        </div>
+    </main>
+
     
     <footer>© 2026 Curso de Desenvolvimento WEB</footer>
 </body>
