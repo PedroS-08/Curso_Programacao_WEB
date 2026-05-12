@@ -7,14 +7,14 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #0c0b13;
-    color: #cfc8fa;
+    color: #f7ffff;
     background-size: auto;
 }
 
 .icone {
     font-family: 'Material Symbols Outlined';
     font-size: 24px;
-    color: #6352f8;
+    color: #00e676;
 }
 
 
@@ -38,17 +38,19 @@ body {
 .busca {
     width: 400px;
     height: 40px;
-    margin-left: 250px;
+    display: flex;
+    align-content: center;
     background-color: transparent;
     border: 1px solid #9d93f51a;
     border-radius: 12px;
     outline: none;
     padding: 25px;
+    color: #e7ffae;
 }
 
 .busca::placeholder {
     text-align: justify;
-    color: #6352f8;
+    color: #00e676;
     font-size: 16px;
 }
 
@@ -86,12 +88,12 @@ body {
     padding:18px 22px;
     cursor:pointer;
     transition:.25s;
-    color:#6352f8;
+    color:#00e676;
     white-space:nowrap;
 }
 
 .menu:hover{
-    background:#18152e;
+    background:#142510e5;
 }
 
 .menu_inicio{
@@ -101,9 +103,9 @@ body {
     padding:18px 22px;
     cursor:pointer;
     transition:.25s;
-    color:#6352f8;
-    background:rgba(37, 35, 146, 0.267);
-    border-left:4px solid #441aff;
+    color:#00e676;
+    background:rgba(12, 82, 21, 0.267);
+    border-left:4px solid #048f04;
 }
 
 
@@ -115,6 +117,7 @@ body {
     flex-direction: column;
 }
 
+
 .cadastro {
     font-size: 28px;
     margin-bottom: 8px;
@@ -123,7 +126,7 @@ body {
 }
 
 .subt {
-    color: #605eff;
+    color: #78fc50;
     margin-bottom: 25px;
     width: 100%;
     max-width: 1000px;
@@ -132,7 +135,7 @@ body {
 .tela_cadastro {
     width: 100%;
     max-width: 1000px;
-    background-color: #161a33af;
+    background-color: #13141daf;
     border-radius: 12px;
     padding: 25px;
     display: flex;
@@ -148,11 +151,11 @@ body {
 .titulo_info {
     font-size: 18px;
     margin-bottom: 18px;
-    color: #441aff;
+    color: #00e676;
 }
 
 .labels {
-    color: #7b6cff;
+    color: #78fc50;
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
@@ -160,50 +163,56 @@ body {
 
 .ipt {
     background-color: transparent;
-    color: #7b6cff;
+    color: #78fc50;
     width: 100%;
     max-width: 1000px;
     padding: 10px;
     margin-bottom: 35px;
-    border: 1px solid #7b6cff27;
+    border: 1px solid #918bc727;
     border-radius: 10px;
     outline: none;
 }
 
+.ipt_radio {
+    accent-color: #78fc50;
+    cursor: pointer;
+}
+
 .txt {
     background-color: transparent;
-    color: #7b6cff;
+    color: #78fc50;
     width: 100%;
     max-width: 1000px;
     height: 80px;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #7b6cff27;
+    border: 1px solid #78fc50;
     border-radius: 10px;
     outline: none;
     resize: none;
 }
 
+
 .slct {
     background-color: transparent;
-    color: #7b6cff;
+    color: #78fc50;
     width: 100%;
     max-width: 1000px;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #7b6cff27;
+    border: 1px solid #918bc727;
     border-radius: 10px;
     outline: none;
 }
 
 .slct::-webkit-keygen-select {
-    color: #605eff;
+    color: #00e676;
     background-color: #0c0b13;
 }
 
 .up_img {
     background-color: transparent;
-    color: #7b6cff;
+    color: #78fc50;
     width: 100%;
     padding: 10px;
     font-size: 14px;
@@ -215,12 +224,12 @@ body {
 }
 
 .up_img::-webkit-file-upload-button {
-    background-color: #605eff;
+    background-color: #048f04;
     width: 100%;
     height: 40px;
     border-radius: 10px;
     display: flex;
-    color: white;
+    color: #fff;
     outline: none;
     border: none;
 }
@@ -233,6 +242,7 @@ body {
     margin-top: 30px;
     display: flex;
     justify-content: center;
+    align-content: center;
     gap: 15px;
 }
 
@@ -241,7 +251,7 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background-color: #392cf8;
+    background-color: #048f04;
     color: white;
 }
 
@@ -250,13 +260,21 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background-color: #8396ff;
-    color: #05060a;
+    background-color: #0b0b14ef;
+    color: #a7f047;
 }
 
+p {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 
 footer {
     text-align: center;
-    color: #6352f8;
+    color: #00e676;
     font-size: 12px;
 }
