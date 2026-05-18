@@ -39,8 +39,7 @@ function cadastrar() {
 
     produtos.push(produto);
     mostrarProdutos(produtos);
-    document.getElementById("mensagem").textContent =
-    "Produto registrado!";
+    document.getElementById("mensagem").textContent = "Produto registrado!";
 }
 
 function mostrarProdutos(lista) {
