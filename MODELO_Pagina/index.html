@@ -55,7 +55,7 @@
             <h1 class="cadastro">Cadastro de Novo Produto - Passo a Passo</h1>
             <p class="subt">Olá Aluno! Preencha as informações abaixo para adicionar um produto.</p>
             
-            <section id='c_produtos' class="tela_cadastro">
+            <div class="tela_cadastro">
                 <div class="form">
                     <h2 class="titulo_info">1. Informações Básicas 📦</h2>
                     <label class="labels">Nome do Produto</label>
@@ -70,9 +70,9 @@
                         <abbr title="Selecione o tipo do produto"> 🛈</abbr>
                     </label>
                     <select id="selec" class="slct">
-                        <option value="V">Vestuário</option>
-                        <option value="E">Eletrônicos</option>
-                        <option value="A">Alimentos</option>
+                        <option value="Vestuário">Vestuário</option>
+                        <option value="Eletrônicos">Eletrônicos</option>
+                        <option value="Alimentos">Alimentos</option>
                     </select>
                     <label class="labels">Estado do Produto</label><br>
                     <input id="rad_opt" class="ipt_radio" type="radio" value="Ativo" id="p1" name="atv">
@@ -102,7 +102,7 @@
                     <label class="labels">Adicionar Imagem</label>
                     <input class="up_img" type="file" accept="image/*">
                 </div>
-            </section>
+            </div>
 
             <div class="btn">
                 <button class="bt1" onclick="cadastrar()">Cadastrar Produto</button>
@@ -113,8 +113,26 @@
 
 
         <section id="m_produtos" style="display: none;">
-            <h1>Produtos cadstrados</h1>
-            <ol id="lista_prod"></ol>
+            <h1>Produtos cadastrados</h1>
+            <div class="abas">
+                <button onclick="filtrar('Todos')">Todos</button>
+                <button onclick="filtrar('Vestuário')"> Vestuário</button>
+                <button onclick="filtrar('Eletrônicos')">Eletrônicos</button>
+                <button onclick="filtrar('Alimentos')">Alimentos</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody id="lista_prod"></tbody>
+            </table>
+
         </section>
 
         <section id="precos" style="display: none;">
