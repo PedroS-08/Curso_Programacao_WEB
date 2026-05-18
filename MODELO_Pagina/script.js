@@ -66,9 +66,7 @@ function filtrar(categoria) {
 
     } else {
 
-        let filtrados = produtos.filter(prod =>
-            prod.categoria == categoria
-        );
+        let filtrados = produtos.filter(prod => prod.categoria == categoria);
         mostrarProdutos(filtrados);
     }
 }
