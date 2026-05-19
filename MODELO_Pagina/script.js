@@ -80,4 +80,7 @@ function limpar() {
     document.getElementById("qtd").value = "";
     document.querySelectorAll('input[name="atv"]').forEach(radio => { radio.checked = false;});
     document.getElementById("mensagem").textContent = "";
+    
+    // localStorage.setItem["Tarefa". tarefa]
+    // let getTarefa = localStorage.getItem['tarefa']
 }
