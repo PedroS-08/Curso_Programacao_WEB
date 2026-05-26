@@ -1,0 +1,45 @@
+<!DOCTYPE html> <!-- Declara que este é um documento HTML5 padrão -->
+<html lang="pt-BR"> <!-- Inicia o documento HTML e define o idioma como Português do Brasil -->
+
+
+
+<head> <!-- A tag <head> guarda as configurações da página (informações que não aparecem na tela principal) -->
+    <meta charset="UTF-8"> <!-- Permite que a página entenda acentos e caracteres especiais (ex: ç, ã) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz com que a página se adapte bem a telas de celulares e tablets -->
+    <title>Lista de Tarefas</title> <!-- É o título que vai aparecer na aba lá no topo do navegador -->
+    <link rel="stylesheet" href="./style.css"> <!-- Conecta a página a um arquivo de estilos (CSS) para deixar o visual bonito -->
+</head>
+
+<body> <!-- Tudo que está dentro do <body> é o que o usuário realmente vai ver e interagir na tela -->
+    
+    <!-- Uma 'div' é como se fosse uma caixa invisível usada para agrupar e organizar os elementos -->
+    <div class="container">
+        
+        <!-- <h1> é usado para o título principal e mais importante da página -->
+        <h1>Lista de Tarefas</h1>
+        
+        <!-- <p> é usado para parágrafos de texto normal -->
+        <p>Adicione suas tarefas!</p>
+
+        
+        <input type="text" id="inputTarefa" placeholder="Digite a sua tarefa">
+
+        <p id="mensagem"></p>
+
+        <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+
+       
+        
+        
+        
+        <ol id="listaTarefas"></ol>
+        
+    </div>
+
+    <!-- A tag <script> serve para conectar o nosso arquivo de códigos e lógicas (JavaScript) com esta estrutura (HTML). 
+         Colocamos no final do <body> para garantir que toda a parte visual (HTML) seja carregada ANTES do JavaScript tentar interagir com ela. -->
+    <script src="script.js"></script> 
+</body>
+
+</html>
+

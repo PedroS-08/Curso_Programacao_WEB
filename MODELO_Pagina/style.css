@@ -240,7 +240,11 @@ body {
     max-width: 1000px;
     display: flex;
     justify-content: center;
+<<<<<<< HEAD
     align-items: center;
+=======
+    align-content: center;
+>>>>>>> 4a22af985acb9daff8ccd4a3edb2411205e10f7e
     gap: 15px;
     margin-top: 25px;
 }
@@ -251,21 +255,42 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+<<<<<<< HEAD
     font-size: 15px;
     transition: 0.3s;
 }
 
 
 .bt1{
+=======
+>>>>>>> 4a22af985acb9daff8ccd4a3edb2411205e10f7e
     background-color: #048f04;
     color: white;
 }
 
+<<<<<<< HEAD
 
 .bt1:hover{
     background-color: #05aa05;
+=======
+.bt2 {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #0b0b14ef;
+    color: #a7f047;
+>>>>>>> 4a22af985acb9daff8ccd4a3edb2411205e10f7e
 }
 
+p {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 
 .bt2{
     background-color: #161824;
