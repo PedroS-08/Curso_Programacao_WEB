@@ -1,130 +1,267 @@
+/* ============================================================
+   VARIÁVEIS & RESET
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');
+
 :root {
-  --creme:   #fff2dcee;
-  --azul:    #0b2449;
-  --dourado: #aa9161;
-  --branco:  #FFFFFF;
-  --sidebar-fechada: 70px;
-  --sidebar-aberta:  210px;
+  /* Paleta 60 / 30 / 10 */
+  --azul-fundo:      #0a1c38;      /* 60% — fundo principal */
+  --azul-medio:      #0d2348;
+  --azul-escuro:     #060f1e;
+  --creme:           #f5e6c8;      /* 30% — sidebar, textos */
+  --creme-suave:     #eeddb0;
+  --creme-escuro:    #d4c49a;
+  --dourado:         #c9a84c;      /* 10% — acentos, destaques */
+  --dourado-claro:   #e8c97a;
+  --dourado-escuro:  #9e7a2e;
+
+  /* Sidebar */
+  --sidebar-fechada: 72px;
+  --sidebar-aberta:  220px;
+
+  /* Tipografia */
+  --fonte-display:  'Playfair Display', Georgia, serif;
+  --fonte-serif:    'Cormorant Garamond', Georgia, serif;
+  --fonte-ui:       'DM Sans', sans-serif;
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   display: flex;
   min-height: 100vh;
-  background-color: var(--creme);
-  font-family: Georgia, serif;
-  color: var(--azul);
+  background: linear-gradient(160deg, var(--azul-medio) 0%, var(--azul-fundo) 45%, var(--azul-escuro) 100%);
+  font-family: var(--fonte-ui);
+  color: var(--creme);
 }
 
-h2 {
-  font-size: 20px;
-  color: #0b2449;
+/* Textura sutil sobre o fundo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(13,35,72,0.5) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
-/* Sidebar */
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: var(--sidebar-fechada);
-  background-color: var(--azul);
+  background: linear-gradient(180deg, #f0deb4 0%, #e8d09a 50%, #d9c08a 100%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 24px 0;
+  align-items: stretch;
   overflow: hidden;
-  transition: width 0.3s ease;
-  z-index: 100;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 200;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.35);
+  border-right: 1px solid rgba(201,168,76,0.3);
 }
 
 .sidebar:hover {
   width: var(--sidebar-aberta);
 }
 
-.icone {
-    font-family: 'Material Symbols Outlined';
-    font-size: 28px;
-    color: var(--dourado);
-    flex-shrink: 0;
-    width: 24px;
-    text-align: center;
+/* Logo */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 16px 28px;
+  border-bottom: 1px solid rgba(10,28,56,0.12);
+  flex-shrink: 0;
+  overflow: hidden;
+  min-height: 82px;
 }
 
+.logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(60%) saturate(800%) hue-rotate(200deg);
+  /* Fallback visual caso a imagem não carregue */
+}
+
+/* Fallback: se imagem não existir, mostra sigla */
+.logo-img[src="logo_VDS.png"] {
+  display: block;
+}
+
+.logo-sigla {
+  font-family: var(--fonte-display);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--azul-fundo);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease 0.05s, transform 0.25s ease 0.05s;
+}
+
+.sidebar:hover .logo-sigla {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Nav principal */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+/* Bottom nav */
+.sidebar-bottom {
+  padding: 12px 0 20px;
+  border-top: 1px solid rgba(10,28,56,0.12);
+}
+
+/* Links */
 .nav-link {
   display: flex;
   align-items: center;
   gap: 14px;
   width: 100%;
-  padding: 14px 20px;
-  color: var(--creme);
+  padding: 13px 22px;
+  color: var(--azul-medio);
   text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.03em;
+  font-family: var(--fonte-ui);
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   border-left: 3px solid transparent;
+  position: relative;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.07);
+  background: rgba(10, 28, 56, 0.08);
+  color: var(--azul-escuro);
 }
 
 .nav-link.active {
-  background-color: rgba(201, 168, 76, 0.12);
-  border-left: 3px solid var(--dourado);
+  background: rgba(10, 28, 56, 0.12);
+  border-left: 3px solid var(--azul-fundo);
+  color: var(--azul-escuro);
+  font-weight: 500;
 }
 
+.nav-link .icone {
+  font-size: 22px;
+  flex-shrink: 0;
+  width: 26px;
+  text-align: center;
+  color: var(--azul-medio);
+  transition: color 0.2s;
+}
 
-.nav-link span {
+.nav-link.active .icone,
+.nav-link:hover .icone {
+  color: var(--azul-escuro);
+}
+
+.nav-label {
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease 0.05s, transform 0.2s ease 0.05s;
 }
 
-.sidebar:hover .nav-link span {
+.sidebar:hover .nav-label {
   opacity: 1;
+  transform: translateX(0);
 }
 
-/* Main */
+
+/* ============================================================
+   CONTEÚDO PRINCIPAL
+   ============================================================ */
 .conteudo {
   margin-left: var(--sidebar-fechada);
   flex: 1;
-  padding: 32px 40px;
+  padding: 36px 48px 60px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Bar */
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
 .topbar {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 52px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
 }
 
-.topbar h1 {
-  font-size: 28px;
-  font-weight: normal;
-  color: var(--azul);
-  letter-spacing: 0.02em;
+.topbar-subtitulo {
+  display: block;
+  font-family: var(--fonte-ui);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 6px;
+  opacity: 0.85;
 }
 
+.topbar-h1 {
+  font-family: var(--fonte-display);
+  font-size: 42px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--creme);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+/* Barra de pesquisa */
 .barra-pesquisa {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--branco);
-  border: 1.5px solid var(--azul);
+  background: rgba(245,230,200,0.07);
+  border: 1px solid rgba(201,168,76,0.35);
   border-radius: 100px;
-  padding: 8px 20px;
-  width: 300px;
+  padding: 10px 22px;
+  width: 280px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.barra-pesquisa i {
-  color: var(--dourado);
+.barra-pesquisa:focus-within {
+  border-color: rgba(201,168,76,0.7);
+  background: rgba(245,230,200,0.11);
+}
+
+.search-icone {
   font-size: 18px;
+  color: var(--dourado);
   flex-shrink: 0;
 }
 
@@ -132,43 +269,111 @@ h2 {
   border: none;
   outline: none;
   background: transparent;
-  font-size: 14px;
-  color: var(--azul);
+  font-family: var(--fonte-ui);
+  font-size: 13px;
+  color: var(--creme);
   width: 100%;
 }
 
 .barra-pesquisa input::placeholder {
-  color: #aaa;
+  color: rgba(245,230,200,0.35);
 }
 
 
-.carrossel {
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+.secao {
+  margin-bottom: 64px;
+}
+
+.secao-cabecalho {
+  margin-bottom: 30px;
+}
+
+.secao-titulo {
+  font-family: var(--fonte-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--creme);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.secao-subtexto {
+  font-family: var(--fonte-serif);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dourado);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.linha-ornato {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--dourado), transparent);
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+
+/* ============================================================
+   CARROSSEL
+   ============================================================ */
+.carrossel-wrapper {
   width: 100%;
   overflow: hidden;
-  margin-bottom: 36px;
+  /* fade nas bordas */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
 
+.carrossel {
+  overflow: hidden;
+}
 
 .slides-faixa {
   display: flex;
-  width: 250%;
-  animation: girar 120s linear infinite;
+  gap: 16px;
+  width: max-content;
+  animation: deslizar 60s linear infinite;
 }
 
-@keyframes girar {
+@keyframes deslizar {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* Card individual — proporção de capa de livro */
 .slide {
-  width: 10%;
-  height: 340px;
+  width: 200px;
+  height: 300px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
-  margin: 0 6px;
-  background-color: var(--azul);
+  border-radius: 14px;
+  background: var(--azul-medio);
+  cursor: pointer;
+  border: 1px solid rgba(201,168,76,0.15);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.slide:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(201,168,76,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  border-color: rgba(201,168,76,0.5);
 }
 
 .slide img {
@@ -176,60 +381,172 @@ h2 {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease, filter 0.4s ease;
 }
 
-.slide p {
+.slide:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.08) saturate(1.1);
+}
+
+/* Overlay gradiente e legenda */
+.slide-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(26, 58, 92, 0.6);
-  color: var(--creme);
-  padding: 8px 12px;
-  font-size: 13px;
-  text-align: center;
-}
-
-/* Mapa */
-
-.mapa-container {
-  border: none;
-  overflow: hidden;
-  opacity: 0.85;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(6,15,30,0.5) 70%,
+    rgba(6,15,30,0.88) 100%
+  );
   display: flex;
-  justify-content: center;
+  align-items: flex-end;
+  padding: 0 0 14px 0;
+  transition: background 0.3s ease;
 }
+
+.slide:hover .slide-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 35%,
+    rgba(6,15,30,0.4) 65%,
+    rgba(6,15,30,0.82) 100%
+  );
+}
+
+.slide-legenda {
+  width: 100%;
+  text-align: center;
+  font-family: var(--fonte-serif);
+  font-size: 12.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--creme-suave);
+  padding: 0 10px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+}
+
+
+/* ============================================================
+   MAPA
+   ============================================================ */
+.secao-mapa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secao-mapa .secao-cabecalho {
+  text-align: center;
+  align-self: center;
+}
+
+.secao-mapa .linha-ornato {
+  margin: 12px auto 0;
+  background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+  width: 80px;
+}
+
+/* Moldura ornamentada do mapa */
+.mapa-moldura {
+  position: relative;
+  width: min(680px, 100%);
+  padding: 12px;
+  background: linear-gradient(135deg,
+    rgba(201,168,76,0.12),
+    rgba(201,168,76,0.04),
+    rgba(201,168,76,0.12)
+  );
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.08),
+    0 20px 60px rgba(0,0,0,0.45),
+    0 4px 16px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  backdrop-filter: blur(4px);
+}
+
+/* Cantos decorativos */
+.mapa-canto {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--dourado);
+  border-style: solid;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.mapa-canto--tl { top: 5px; left: 5px;  border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+.mapa-canto--tr { top: 5px; right: 5px; border-width: 2px 2px 0 0; border-radius: 0 4px 0 0; }
+.mapa-canto--bl { bottom: 5px; left: 5px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 4px; }
+.mapa-canto--br { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
 
 .mapa {
-  border: 2.6px solid var(--dourado);  
-  border-radius: 20px;
-  width: 60%;
-  height: 350px;
+  width: 100%;
+  height: 360px;
+  border: none;
+  border-radius: 14px;
   display: block;
+  filter: saturate(0.7) brightness(0.9) hue-rotate(190deg);
+  transition: filter 0.4s ease;
 }
 
-/* Responsividade */
+.mapa-moldura:hover .mapa {
+  filter: saturate(0.85) brightness(0.95) hue-rotate(190deg);
+}
 
-@media (max-width: 768px) {
+.mapa-rodape {
+  margin-top: 14px;
+  font-family: var(--fonte-ui);
+  font-size: 11.5px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.6);
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+@media (max-width: 900px) {
   .conteudo {
-    padding: 20px 16px;
+    padding: 24px 20px 48px;
   }
 
   .topbar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 18px;
+    margin-bottom: 36px;
   }
 
   .barra-pesquisa {
     width: 100%;
   }
 
+  .topbar-h1 {
+    font-size: 32px;
+  }
+
+  .secao-titulo {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
   .slide {
-    height: 220px;
+    width: 155px;
+    height: 232px;
   }
 
   .mapa {
-    height: 200px;
+    height: 240px;
+  }
+
+  .topbar-h1 {
+    font-size: 28px;
   }
 }
