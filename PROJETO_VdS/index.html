@@ -198,7 +198,7 @@
 
     </section>   <!-- Fim aba inicio -->
 
-
+<!-- ----------------------------------------------------------------------- -->
     <!-- Aba relatar -->
     <section id="relatar" style="display:none">
       
@@ -212,7 +212,7 @@
       <!-- Grid principal 2×2 -->
       <div class="relatar-grid">
 
-        <!-- ① Quadrante sup-esq — Dados do relato -->
+        <!-- Dados do relato -->
         <div class="rel-card">
           <div class="rel-card-header">
             <span class="material-symbols-outlined rel-card-icone">edit_note</span>
@@ -221,20 +221,17 @@
 
           <div class="rel-campo">
             <label class="rel-label" for="r-nome-problema">Nome do Problema</label>
-            <input id="r-nome-problema" class="rel-input" type="text"
-                  placeholder="Ex.: Buraco na Rua das Flores" />
+            <input id="r-nome-problema" class="rel-input" type="text" placeholder="Ex.: Buraco na Rua 0" />
           </div>
 
           <div class="rel-campo rel-campo--grow">
             <label class="rel-label" for="r-descricao">Descrição</label>
-            <textarea id="r-descricao" class="rel-textarea"
-                      placeholder="Descreva o problema com detalhes…"></textarea>
+            <textarea id="r-descricao" class="rel-textarea" placeholder="Descreva o problema com detalhes…"></textarea>
           </div>
 
           <div class="rel-campo">
             <label class="rel-label" for="r-usuario">Seu Nome</label>
-            <input id="r-usuario" class="rel-input" type="text"
-                  placeholder="Opcional — identificação do denunciante" />
+            <input id="r-usuario" class="rel-input" type="text" placeholder="Identificação do denunciante" />
           </div>
         </div>
 
@@ -242,23 +239,20 @@
         <div class="rel-card">
           <div class="rel-card-header">
             <span class="material-symbols-outlined rel-card-icone">location_on</span>
-            <span class="rel-card-titulo">Local &amp; Data</span>
+            <span class="rel-card-titulo">Local & Data</span>
           </div>
 
           <div class="rel-campo">
             <label class="rel-label" for="r-local-texto">Local do Ocorrido</label>
             <div class="rel-input-icon-wrap">
               <span class="material-symbols-outlined rel-input-icone">place</span>
-              <input id="r-local-texto" class="rel-input rel-input--icon" type="text"
-                    placeholder="Ex.: Rua das Flores, 120" />
+              <input id="r-local-texto" class="rel-input rel-input--icon" type="text" placeholder="Ex.: Rua 0, 123" />
             </div>
           </div>
 
           <!-- Mini-mapa clicável -->
           <div class="rel-campo rel-campo--grow">
-            <label class="rel-label">Marcar no Mapa
-              <span class="rel-label-hint">(clique para fixar o pino)</span>
-            </label>
+            <label class="rel-label">Marcar no Mapa</label>
             <div class="rel-mapa-wrap">
               <iframe id="rel-mapa-iframe"
                 class="rel-mapa"
@@ -287,7 +281,7 @@
           </div>
         </div>
 
-        <!-- ③ Quadrante inf-esq — Adicionar foto -->
+        <!-- Quadrante inf-esq — Adicionar foto -->
         <div class="rel-card rel-card--foto-upload">
           <div class="rel-card-header">
             <span class="material-symbols-outlined rel-card-icone">add_photo_alternate</span>
@@ -315,7 +309,7 @@
           <p class="rel-foto-formatos">JPG, PNG, WEBP — máx. 10 MB</p>
         </div>
 
-        <!-- ④ Quadrante inf-dir — Preview da foto -->
+        <!-- Quadrante Preview da foto -->
         <div class="rel-card rel-card--preview" id="rel-preview-card">
           <div class="rel-card-header">
             <span class="material-symbols-outlined rel-card-icone">image</span>
