@@ -25,27 +25,27 @@
 
     <nav class="sidebar-nav">
 
-      <a href="#" class="nav-link active" title="Início">
+      <a href="#" class="nav-link active" title="Início" onclick="aba('inicio')">
         <span class="material-symbols-outlined icone">home</span>
         <span class="nav-label">Início</span>
       </a>
 
-      <a href="#" class="nav-link" title="Relatar">
+      <a href="#" class="nav-link" title="Relatar" onclick="aba('relatar')">
         <span class="material-symbols-outlined icone">campaign</span>
         <span class="nav-label">Relatar</span>
       </a>
 
-      <a href="#" class="nav-link" title="Ouvidoria">
+      <a href="#" class="nav-link" title="Ouvidoria" onclick="aba('ouvidoria')">
         <span class="material-symbols-outlined icone">headset_mic</span>
         <span class="nav-label">Ouvidoria</span>
       </a>
 
-      <a href="#" class="nav-link" title="Visualizar">
+      <a href="#" class="nav-link" title="Visualizar" onclick="aba('visualizar')">
         <span class="material-symbols-outlined icone">visibility</span>
         <span class="nav-label">Visualizar</span>
       </a>
 
-      <a href="#" class="nav-link" title="Perfil">
+      <a href="#" class="nav-link" title="Perfil" onclick="aba('perfil')">
         <span class="material-symbols-outlined icone">person</span>
         <span class="nav-label">Perfil</span>
       </a>
@@ -53,7 +53,7 @@
     </nav>
 
     <div class="sidebar-bottom">
-      <a href="#" class="nav-link" title="Configurações">
+      <a href="#" class="nav-link" title="Configurações" onclick="aba('configuracoes')">
         <span class="material-symbols-outlined icone">settings</span>
         <span class="nav-label">Configurações</span>
       </a>
@@ -65,136 +65,201 @@
   <!-- Main -->
   <main class="conteudo">
 
-    <!-- Header -->
-    <header class="topbar">
-      <div class="topbar-titulo">
-        <span class="topbar-subtitulo">Bem-vindo</span>
-        <h1 class="topbar-h1">Início</h1>
-      </div>
-      <div class="barra-pesquisa">
-        <span class="material-symbols-outlined search-icone">search</span>
-        <input type="text" placeholder="Buscar relatos, lugares…" />
-      </div>
-    </header>
+    <!-- Aba inicio -->
+    <section id="inicio">
 
-
-    <!-- Carrossel -->
-    <section class="secao">
-      <div class="secao-cabecalho">
-        <h2 class="secao-titulo">Nossa Cidade</h2>
-        <p class="secao-subtexto">Identidade de São João del del-Rei</p>
-        <div class="linha-ornato"></div>
-      </div>
-
-      <div class="carrossel-wrapper">
-        <div class="carrossel">
-          <div class="slides-faixa">
-
-            <div class="slide">
-              <img src="img/cidade.png" alt="Ruas de São João"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Ruas de São João</p>
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <span class="topbar-subtitulo">Bem-vindo</span>
+          <h1 class="topbar-h1">Início</h1>
+        </div>
+        <div class="barra-pesquisa">
+          <span class="material-symbols-outlined search-icone">search</span>
+          <input type="text" placeholder="Buscar relatos, lugares…" />
+        </div>
+      </header>
+  
+  
+      <!-- Carrossel -->
+      <section class="secao">
+        <div class="secao-cabecalho">
+          <h2 class="secao-titulo">Nossa Cidade</h2>
+          <p class="secao-subtexto">Identidade de São João del del-Rei</p>
+          <div class="linha-ornato"></div>
+        </div>
+  
+        <div class="carrossel-wrapper">
+          <div class="carrossel">
+            <div class="slides-faixa">
+  
+              <div class="slide">
+                <img src="img/cidade.png" alt="Ruas de São João"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Ruas de São João</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/igreja_2.png" alt="Igreja Antiga"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Igreja Histórica</p>
+  
+              <div class="slide">
+                <img src="img/igreja_2.png" alt="Igreja Antiga"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Igreja Histórica</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/igreja_sf.png" alt="Igreja de São Francisco"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Igreja de São Francisco</p>
+  
+              <div class="slide">
+                <img src="img/igreja_sf.png" alt="Igreja de São Francisco"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Igreja de São Francisco</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/ponte_cadeia.jpg" alt="Ponte da Cadeia"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Ponte da Cadeia</p>
+  
+              <div class="slide">
+                <img src="img/ponte_cadeia.jpg" alt="Ponte da Cadeia"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Ponte da Cadeia</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/trem.png" alt="Maria Fumaça"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Maria Fumaça</p>
+  
+              <div class="slide">
+                <img src="img/trem.png" alt="Maria Fumaça"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Maria Fumaça</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/cidade.png" alt="Ruas de São João"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Ruas de São João</p>
+  
+              <div class="slide">
+                <img src="img/cidade.png" alt="Ruas de São João"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Ruas de São João</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/igreja_2.png" alt="Igreja Antiga"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Igreja Histórica</p>
+  
+              <div class="slide">
+                <img src="img/igreja_2.png" alt="Igreja Antiga"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Igreja Histórica</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/igreja_sf.png" alt="Igreja de São Francisco"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Igreja de São Francisco</p>
+  
+              <div class="slide">
+                <img src="img/igreja_sf.png" alt="Igreja de São Francisco"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Igreja de São Francisco</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/ponte_cadeia.jpg" alt="Ponte da Cadeia"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Ponte da Cadeia</p>
+  
+              <div class="slide">
+                <img src="img/ponte_cadeia.jpg" alt="Ponte da Cadeia"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Ponte da Cadeia</p>
+                </div>
               </div>
-            </div>
-
-            <div class="slide">
-              <img src="img/trem.png" alt="Maria Fumaça"/>
-              <div class="slide-overlay">
-                <p class="slide-legenda">Maria Fumaça</p>
+  
+              <div class="slide">
+                <img src="img/trem.png" alt="Maria Fumaça"/>
+                <div class="slide-overlay">
+                  <p class="slide-legenda">Maria Fumaça</p>
+                </div>
               </div>
+  
             </div>
-
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+  
+  
+      <!-- Mapa -->
+      <section class="secao secao-mapa">
+        <div class="secao-cabecalho">
+          <h2 class="secao-titulo">São João del-Rei</h2>
+          <p class="secao-subtexto">Minas Gerais · Brasil</p>
+          <div class="linha-ornato"></div>
+        </div>
+  
+        <div class="mapa-moldura">
+          <div class="mapa-canto mapa-canto--tl"></div>
+          <div class="mapa-canto mapa-canto--tr"></div>
+          <div class="mapa-canto mapa-canto--bl"></div>
+          <div class="mapa-canto mapa-canto--br"></div>
+          <iframe
+            class="mapa"
+            src="https://maps.google.com/maps?q=São+João+del-Rei,+MG,+Brasil&output=embed"
+            allowfullscreen
+            loading="lazy"
+            title="Mapa de São João del-Rei">
+          </iframe>
+        </div>
+  
+        <p class="mapa-rodape">
+          <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">location_on</span>
+          São João del-Rei, MG
+        </p>
+      </section>
+
+    </section>   <!-- Fim aba inicio -->
 
 
-    <!-- Mapa -->
-    <section class="secao secao-mapa">
-      <div class="secao-cabecalho">
-        <h2 class="secao-titulo">São João del-Rei</h2>
-        <p class="secao-subtexto">Minas Gerais · Brasil</p>
-        <div class="linha-ornato"></div>
-      </div>
+    <!-- Aba relatar -->
+    <section id="relatar"  style="display:none">
+      
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 class="topbar-h1">Relatar</h1>
+        </div>
+      </header>
 
-      <div class="mapa-moldura">
-        <div class="mapa-canto mapa-canto--tl"></div>
-        <div class="mapa-canto mapa-canto--tr"></div>
-        <div class="mapa-canto mapa-canto--bl"></div>
-        <div class="mapa-canto mapa-canto--br"></div>
-        <iframe
-          class="mapa"
-          src="https://maps.google.com/maps?q=São+João+del-Rei,+MG,+Brasil&output=embed"
-          allowfullscreen
-          loading="lazy"
-          title="Mapa de São João del-Rei">
-        </iframe>
-      </div>
+    </section> <!-- Fim aba relatar -->
 
-      <p class="mapa-rodape">
-        <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">location_on</span>
-        São João del-Rei, MG
-      </p>
-    </section>
+
+    <!-- Aba ouvidoria -->
+    <section id="ouvidoria"  style="display:none">
+      
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 class="topbar-h1">Ouvidoria</h1>
+        </div>
+      </header>
+
+    </section> <!-- Fim aba ouvidoria -->
+
+
+    <!-- Aba visualizar -->
+    <section id="visualizar"  style="display:none">
+      
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 class="topbar-h1">Visualizar</h1>
+        </div>
+      </header>
+
+    </section> <!-- Fim aba visualizar -->
+
+
+    <!-- Aba perfil -->
+    <section id="perfil"  style="display:none">
+      
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 class="topbar-h1">Perfil</h1>
+        </div>
+      </header>
+
+    </section> <!-- Fim aba perfil -->
+
+
+    <!-- Aba configuracoes -->
+    <section id="configuracoes"  style="display:none">
+      
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 class="topbar-h1">Configurações</h1>
+        </div>
+      </header>
+
+    </section> <!-- Fim aba configuracoes -->
+
 
   </main>
-
+  <script src="./script.js"></script>
 </body>
 </html>

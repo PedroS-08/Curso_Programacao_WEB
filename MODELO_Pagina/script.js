@@ -39,12 +39,8 @@ function cadastrar() {
 
     produtos.push(produto);
     mostrarProdutos(produtos);
-<<<<<<< HEAD
     document.getElementById("mensagem").textContent =
     "Produto registrado!";
-=======
-    document.getElementById("mensagem").textContent = "Produto registrado!";
->>>>>>> 82dc5cdc0ef7b4a1a7e027da77bab628a4c392f5
 }
 
 function mostrarProdutos(lista) {
@@ -71,13 +67,9 @@ function filtrar(categoria) {
 
     } else {
 
-<<<<<<< HEAD
         let filtrados = produtos.filter(prod =>
             prod.categoria == categoria
         );
-=======
-        let filtrados = produtos.filter(prod => prod.categoria == categoria);
->>>>>>> 82dc5cdc0ef7b4a1a7e027da77bab628a4c392f5
         mostrarProdutos(filtrados);
     }
 }
@@ -91,10 +83,4 @@ function limpar() {
     document.getElementById("qtd").value = "";
     document.querySelectorAll('input[name="atv"]').forEach(radio => { radio.checked = false;});
     document.getElementById("mensagem").textContent = "";
-<<<<<<< HEAD
-=======
-    
-    // localStorage.setItem["Tarefa". tarefa]
-    // let getTarefa = localStorage.getItem['tarefa']
->>>>>>> 82dc5cdc0ef7b4a1a7e027da77bab628a4c392f5
 }

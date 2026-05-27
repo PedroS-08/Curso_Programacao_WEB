@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Frankenstein</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="pe-root">
+    <div class="pe-tabs" id="tabs"></div>
+    <div class="pe-card" id="card">
+      <div class="pe-topic-header">
+        <p class="pe-topic-title" id="topic-title"></p>
+      </div>
+      <div class="pe-compare" id="compare"></div>
+    </div>
+    <div class="pe-nav" style="margin-bottom: 2rem;">
+      <span class="pe-counter" id="counter"></span>
+      <button onclick="nav(-1)" id="btn-prev">Anterior</button>
+      <button onclick="nav(1)" id="btn-next">Próximo</button>
+    </div>
+    <hr>
+    <div class="quiz-section" id="quiz-container">
+      <h3>Desafio de Conclusão</h3>
+      <div id="quiz-form">
+        <div class="quiz-question">
+          <p><strong>1. Qual é o principal problema de usar um prompt simples como "Melhore esse código" em uma refatoração?</strong></p>
+          <label><input type="radio" name="q1" value="A"> A) A IA vai sempre transformar o código em Python.</label><br>
+          <label><input type="radio" name="q1" value="B"> B) A IA pode alterar o comportamento esperado do sistema por falta de restrições claras.</label><br>
+          <label><input type="radio" name="q1" value="C"> C) O prompt é muito longo e gasta tokens.</label>
+        </div>
+        <div class="quiz-question">
+          <p><strong>2. Por que é essencial definir a stack tecnológica no prompt?</strong></p>
+          <label><input type="radio" name="q2" value="A"> A) Para que a IA evite criar implementações genéricas ou com tecnologias misturadas.</label><br>
+          <label><input type="radio" name="q2" value="B"> B) Para aumentar a velocidade de resposta do chat.</label><br>
+          <label><input type="radio" name="q2" value="C"> C) Apenas para o código ficar mais bonito.</label>
+        </div>
+        <button type="button" class="btn-submit" onclick="checkQuiz()">Verificar Respostas</button>
+      </div>
+      <div id="quiz-result" class="quiz-result hidden"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
