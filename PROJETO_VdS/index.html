@@ -200,13 +200,154 @@
 
 
     <!-- Aba relatar -->
-    <section id="relatar"  style="display:none">
+    <section id="relatar" style="display:none">
       
       <header class="topbar">
         <div class="topbar-titulo">
+          <span class="topbar-subtitulo">São João del-Rei</span>
           <h1 class="topbar-h1">Relatar</h1>
         </div>
       </header>
+
+      <!-- Grid principal 2×2 -->
+      <div class="relatar-grid">
+
+        <!-- ① Quadrante sup-esq — Dados do relato -->
+        <div class="rel-card">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">edit_note</span>
+            <span class="rel-card-titulo">Dados do Relato</span>
+          </div>
+
+          <div class="rel-campo">
+            <label class="rel-label" for="r-nome-problema">Nome do Problema</label>
+            <input id="r-nome-problema" class="rel-input" type="text"
+                  placeholder="Ex.: Buraco na Rua das Flores" />
+          </div>
+
+          <div class="rel-campo rel-campo--grow">
+            <label class="rel-label" for="r-descricao">Descrição</label>
+            <textarea id="r-descricao" class="rel-textarea"
+                      placeholder="Descreva o problema com detalhes…"></textarea>
+          </div>
+
+          <div class="rel-campo">
+            <label class="rel-label" for="r-usuario">Seu Nome</label>
+            <input id="r-usuario" class="rel-input" type="text"
+                  placeholder="Opcional — identificação do denunciante" />
+          </div>
+        </div>
+
+        <!-- ② Quadrante sup-dir — Localização e Data -->
+        <div class="rel-card">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">location_on</span>
+            <span class="rel-card-titulo">Local &amp; Data</span>
+          </div>
+
+          <div class="rel-campo">
+            <label class="rel-label" for="r-local-texto">Local do Ocorrido</label>
+            <div class="rel-input-icon-wrap">
+              <span class="material-symbols-outlined rel-input-icone">place</span>
+              <input id="r-local-texto" class="rel-input rel-input--icon" type="text"
+                    placeholder="Ex.: Rua das Flores, 120" />
+            </div>
+          </div>
+
+          <!-- Mini-mapa clicável -->
+          <div class="rel-campo rel-campo--grow">
+            <label class="rel-label">Marcar no Mapa
+              <span class="rel-label-hint">(clique para fixar o pino)</span>
+            </label>
+            <div class="rel-mapa-wrap">
+              <iframe id="rel-mapa-iframe"
+                class="rel-mapa"
+                src="https://maps.google.com/maps?q=São+João+del-Rei,+MG,+Brasil&output=embed"
+                allowfullscreen loading="lazy"
+                title="Selecionar local no mapa">
+              </iframe>
+              <!-- Overlay com pino salvo -->
+              <div class="rel-mapa-overlay" id="rel-mapa-overlay" style="display:none">
+                <span class="material-symbols-outlined" style="font-size:32px;color:#c9a84c;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.7))">location_on</span>
+              </div>
+              <button type="button" class="rel-mapa-btn" id="rel-btn-pin"
+                      title="Salvar posição atual do mapa">
+                <span class="material-symbols-outlined" style="font-size:16px">push_pin</span>
+                Salvar posição
+              </button>
+            </div>
+          </div>
+
+          <div class="rel-campo">
+            <label class="rel-label" for="r-data">Data da Ocorrência</label>
+            <div class="rel-input-icon-wrap">
+              <span class="material-symbols-outlined rel-input-icone">calendar_today</span>
+              <input id="r-data" class="rel-input rel-input--icon" type="date" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ Quadrante inf-esq — Adicionar foto -->
+        <div class="rel-card rel-card--foto-upload">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">add_photo_alternate</span>
+            <span class="rel-card-titulo">Adicionar Foto</span>
+          </div>
+
+          <p class="rel-foto-hint">
+            Tire uma foto ou selecione do dispositivo para ilustrar o problema.
+          </p>
+
+          <input type="file" id="r-foto-input" accept="image/*" capture="environment"
+                style="display:none" />
+
+          <div class="rel-foto-btns">
+            <button type="button" class="rel-btn-foto" onclick="document.getElementById('r-foto-input').removeAttribute('capture'); document.getElementById('r-foto-input').click()">
+              <span class="material-symbols-outlined">photo_library</span>
+              <span>Abrir arquivo</span>
+            </button>
+            <button type="button" class="rel-btn-foto rel-btn-foto--camera" onclick="document.getElementById('r-foto-input').setAttribute('capture','environment'); document.getElementById('r-foto-input').click()">
+              <span class="material-symbols-outlined">photo_camera</span>
+              <span>Tirar foto</span>
+            </button>
+          </div>
+
+          <p class="rel-foto-formatos">JPG, PNG, WEBP — máx. 10 MB</p>
+        </div>
+
+        <!-- ④ Quadrante inf-dir — Preview da foto -->
+        <div class="rel-card rel-card--preview" id="rel-preview-card">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">image</span>
+            <span class="rel-card-titulo">Pré-visualização</span>
+          </div>
+
+          <div class="rel-preview-area" id="rel-preview-area">
+            <span class="material-symbols-outlined rel-preview-placeholder-icone">hide_image</span>
+            <p class="rel-preview-placeholder-txt">Nenhuma imagem selecionada</p>
+          </div>
+
+          <button type="button" class="rel-btn-remover-foto" id="rel-btn-remove-foto"
+                  style="display:none" onclick="removerFoto()">
+            <span class="material-symbols-outlined" style="font-size:15px">close</span>
+            Remover imagem
+          </button>
+        </div>
+
+      </div><!-- /relatar-grid -->
+
+
+      <!-- Botões finais -->
+      <div class="relatar-acoes">
+        <button type="button" class="rel-btn-limpar" onclick="limparRelato()">
+          <span class="material-symbols-outlined" style="font-size:17px">restart_alt</span>
+          Limpar formulário
+        </button>
+        <button type="button" class="rel-btn-enviar" onclick="enviarRelato()">
+          <span class="material-symbols-outlined" style="font-size:18px">send</span>
+          Enviar Relato
+        </button>
+      </div>
 
     </section> <!-- Fim aba relatar -->
 
