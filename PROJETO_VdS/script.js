@@ -1,10 +1,3 @@
-function aba(secao) {
-  document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
-  document.getElementById(secao).style.display = 'block';
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   const campoData = document.getElementById('r-data');
   if (campoData) campoData.value = new Date().toISOString().split('T')[0];
@@ -16,18 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(this.files[0]);
   });
 
-  document.getElementById('rel-btn-pin')?.addEventListener('click', function () {
-    const overlay = document.getElementById('rel-mapa-overlay');
-    if (overlay) Object.assign(overlay.style, { display: 'flex', alignItems: 'flex-end', justifyContent: 'center' });
-
-    this.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px">check</span> Posição salva';
-    this.style.cssText += 'border-color:rgba(100,200,130,.5);color:rgba(160,230,180,.95)';
-
-    setTimeout(() => {
-      this.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px">push_pin</span> Salvar posição';
-      this.style.borderColor = this.style.color = '';
-    }, 2500);
-  });
 });
 
 function mostrarPreviewFoto(src) {
@@ -77,6 +58,8 @@ function enviarRelato() {
   if (!nome)     return destacarCampo('r-nome-problema');
   if (!descricao) return destacarCampo('r-descricao');
   mostrarToast('Relato enviado com sucesso!');
+  const cat = document.getElementById('ouv-categoria')?.value || '';
+  ouvidoriaAdicionarRelato(nome, cat);
   limparRelato();
 }
 
@@ -169,3 +152,200 @@ function sair() {
   alternarAuthAba('criar');
 }
  
+const OUV_CONTATOS = {
+  'Buracos': [
+    {
+      orgao:  'Secretaria de Obras',
+      desc:   'Manutenção de vias e pavimentação',
+      numero: '(32) 3379-7200',
+      icone:  'construction'
+    },
+    {
+      orgao:  'SAAE — Fiscalização',
+      desc:   'Problemas em calçadas e bueiros',
+      numero: '(32) 3379-7300',
+      icone:  'engineering'
+    }
+  ],
+  'Energia': [
+    {
+      orgao:  'CEMIG Atendimento',
+      desc:   'Falta de luz, poste danificado',
+      numero: '0800 721 0196',
+      icone:  'bolt'
+    },
+    {
+      orgao:  'Prefeitura — Iluminação',
+      desc:   'Iluminação pública municipal',
+      numero: '(32) 3379-7150',
+      icone:  'light_mode'
+    }
+  ],
+  'Transportes públicos': [
+    {
+      orgao:  'Sec. de Transportes',
+      desc:   'Ônibus, horários e linhas urbanas',
+      numero: '(32) 3379-7400',
+      icone:  'directions_bus'
+    },
+    {
+      orgao:  'DFTRANS — Fiscalização',
+      desc:   'Denúncias sobre transporte público',
+      numero: '(32) 3379-7410',
+      icone:  'report'
+    }
+  ],
+  'Água': [
+    {
+      orgao:  'COPASA',
+      desc:   'Abastecimento e esgoto',
+      numero: '0800 031 0056',
+      icone:  'water_drop'
+    },
+    {
+      orgao:  'SAAE São João del-Rei',
+      desc:   'Serviço Autônomo de Água e Esgoto',
+      numero: '(32) 3379-7500',
+      icone:  'plumbing'
+    }
+  ],
+  'Serviços Públicos': [
+    {
+      orgao:  'Prefeitura Municipal',
+      desc:   'Central de atendimento ao cidadão',
+      numero: '(32) 3379-7000',
+      icone:  'apartment'
+    },
+    {
+      orgao:  'Ouvidoria Geral',
+      desc:   'Reclamações e sugestões gerais',
+      numero: '(32) 3379-7010',
+      icone:  'headset_mic'
+    }
+  ]
+};
+
+const OUV_RELATOS = [];  
+
+/* ── Inicialização da aba Ouvidoria ── */
+function ouvidoriaInit() {
+  _ouvidoriaPopularSelectRelatos();
+}
+
+/* Popula o select de relatos com os registros existentes */
+function _ouvidoriaPopularSelectRelatos() {
+  const sel  = document.getElementById('ouv-relato');
+  const hint = document.getElementById('ouv-hint-relato');
+  if (!sel) return;
+
+  /* Mantém apenas o placeholder */
+  while (sel.options.length > 1) sel.remove(1);
+
+  if (OUV_RELATOS.length === 0) {
+    if (hint) hint.style.display = 'flex';
+    return;
+  }
+
+  if (hint) hint.style.display = 'none';
+  OUV_RELATOS.forEach((r, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = r.nome;
+    sel.appendChild(opt);
+  });
+}
+
+/* Reage a mudança de qualquer select */
+function ouvidoriaAtualizar() {
+  const selRelato = document.getElementById('ouv-relato');
+  const selCat    = document.getElementById('ouv-categoria');
+  if (!selRelato || !selCat) return;
+
+  const idx      = selRelato.value;
+  const catSelect = selCat.value;
+
+  /* Se um relato foi escolhido, preeenche a categoria dele */
+  let categoria = catSelect;
+  if (idx !== '' && OUV_RELATOS[idx]) {
+    const relato = OUV_RELATOS[idx];
+    if (relato.categoria) {
+      selCat.value = relato.categoria;
+      categoria = relato.categoria;
+    }
+
+    const resumo = document.getElementById('ouv-relato-resumo');
+    document.getElementById('ouv-resumo-nome').textContent = relato.nome;
+    document.getElementById('ouv-resumo-cat').textContent  = relato.categoria || '—';
+    if (resumo) resumo.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.ouv-chip').forEach(c => {
+    c.classList.toggle('ouv-chip--ativo', c.textContent.trim().includes(categoria));
+  });
+
+  /* Renderiza contatos */
+  _ouvidoriaRenderContatos(categoria);
+}
+
+function ouvidoriaSetCategoria(cat) {
+  const sel = document.getElementById('ouv-categoria');
+  if (sel) sel.value = cat;
+  ouvidoriaAtualizar();
+}
+
+function _ouvidoriaRenderContatos(categoria) {
+  const vazio = document.getElementById('ouv-estado-vazio');
+  const lista = document.getElementById('ouv-lista-contatos');
+  if (!lista) return;
+
+  const contatos = OUV_CONTATOS[categoria] || [];
+
+  if (!categoria || contatos.length === 0) {
+    vazio.style.display = 'flex';
+    lista.style.display = 'none';
+    lista.innerHTML = '';
+    return;
+  }
+
+  vazio.style.display = 'none';
+  lista.style.display = 'flex';
+
+  lista.innerHTML = `
+    <div class="ouv-divisor">
+      <div class="ouv-divisor-linha"></div>
+      <span class="ouv-divisor-txt">${categoria}</span>
+      <div class="ouv-divisor-linha"></div>
+    </div>
+    ${contatos.map(c => `
+      <div class="ouv-contato-item">
+        <div class="ouv-contato-circulo">
+          <span class="material-symbols-outlined">${c.icone}</span>
+        </div>
+        <div class="ouv-contato-info">
+          <span class="ouv-contato-orgao">${c.orgao}</span>
+          <span class="ouv-contato-desc">${c.desc}</span>
+        </div>
+        <a href="tel:${c.numero.replace(/\D/g,'')}" class="ouv-contato-numero">
+          <span class="material-symbols-outlined" style="font-size:14px">call</span>
+          ${c.numero}
+        </a>
+      </div>
+    `).join('')}
+  `;
+}
+
+function ouvidoriaAdicionarRelato(nome, categoria) {
+  OUV_RELATOS.push({ nome, categoria });
+  _ouvidoriaPopularSelectRelatos();
+}
+/* ── Atualiza o select de relatos quando a aba Ouvidoria é aberta ── */
+const _abaOriginal = typeof aba === 'function' ? aba : null;
+
+function aba(secao) {
+  document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+  document.getElementById(secao).style.display = 'block';
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  if (secao === 'ouvidoria') ouvidoriaInit();
+}

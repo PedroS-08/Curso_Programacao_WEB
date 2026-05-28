@@ -372,7 +372,7 @@ body::after {
   display: flex;
   gap: 18px;
   width: max-content;
-  animation: deslizar 72s linear infinite;
+  animation: deslizar 150s linear infinite;
 }
 
 .slides-faixa:hover { animation-play-state: paused; }
@@ -809,14 +809,7 @@ input[type="date"].rel-input { color-scheme: dark; }
   filter: saturate(0.68) brightness(0.84) hue-rotate(192deg) contrast(1.02);
 }
 
-.rel-mapa-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  pointer-events: none;
-  z-index: 3;
-}
+
 
 .rel-mapa-btn {
   position: absolute;
@@ -1248,4 +1241,340 @@ input[type="date"].rel-input { color-scheme: dark; }
   background: rgba(200,60,60,0.14);
   border-color: rgba(200,60,60,0.36);
   color: rgba(245,150,150,1);
+}
+
+.ouv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Cards usam .rel-card — só ajustes específicos abaixo */
+.ouv-card-selecao  { }
+.ouv-card-contatos { min-height: 340px; }
+
+/* ── Select estilizado ── */
+.ouv-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ouv-select-icone {
+  position: absolute;
+  left: 13px;
+  font-size: 16px;
+  color: var(--dourado);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.2s;
+}
+
+.ouv-select-seta {
+  position: absolute;
+  right: 13px;
+  font-size: 18px;
+  color: var(--dourado);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.2s, transform 0.25s var(--ease-spring);
+}
+
+.ouv-select-wrap:focus-within .ouv-select-icone { opacity: 0.90; }
+.ouv-select-wrap:focus-within .ouv-select-seta  {
+  opacity: 0.80;
+  transform: rotate(180deg);
+}
+
+.ouv-select {
+  width: 100%;
+  padding: 11px 40px 11px 40px;
+  background: rgba(245,230,200,0.04);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 10px;
+  font-family: var(--fonte-ui);
+  font-size: 13px;
+  color: var(--creme);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  caret-color: var(--dourado);
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Opções do select (navegador) */
+.ouv-select option {
+  background: #071428;
+  color: var(--creme);
+}
+
+.ouv-select:focus {
+  border-color: rgba(201,168,76,0.48);
+  background: rgba(245,230,200,0.07);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.07), 0 4px 20px rgba(0,0,0,0.24);
+}
+
+/* Placeholder de select */
+.ouv-select option[value=""] { color: rgba(245,230,200,0.30); }
+
+/* Hint quando não há relatos */
+.ouv-hint {
+  font-family: var(--fonte-serif);
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(245,230,200,0.35);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  margin-top: 2px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+/* ── Chips de categoria rápida ── */
+.ouv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ouv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  background: rgba(245,230,200,0.03);
+  border: 1px solid rgba(201,168,76,0.13);
+  border-radius: 100px;
+  font-family: var(--fonte-ui);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: rgba(245,230,200,0.50);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--ease-spring);
+}
+
+.ouv-chip:hover {
+  background: rgba(201,168,76,0.09);
+  border-color: rgba(201,168,76,0.32);
+  color: var(--dourado-claro);
+  transform: translateY(-1px);
+}
+
+.ouv-chip:active { transform: scale(0.96); }
+
+.ouv-chip.ouv-chip--ativo {
+  background: rgba(201,168,76,0.15);
+  border-color: rgba(201,168,76,0.45);
+  color: var(--dourado-claro);
+}
+
+/* ── Estado vazio ── */
+.ouv-contatos-vazio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.ouv-vazio-icone {
+  font-size: 42px;
+  color: var(--dourado);
+  opacity: 0.14;
+}
+
+.ouv-vazio-txt {
+  font-family: var(--fonte-serif);
+  font-size: 13.5px;
+  font-style: italic;
+  color: rgba(245,230,200,0.28);
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+}
+
+/* ── Lista de contatos ── */
+.ouv-contatos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Card de um contato */
+.ouv-contato-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  background: rgba(245,230,200,0.03);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 14px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.25s var(--ease-spring);
+  cursor: default;
+}
+
+.ouv-contato-item:hover {
+  background: rgba(201,168,76,0.07);
+  border-color: rgba(201,168,76,0.28);
+  transform: translateX(3px);
+}
+
+/* Círculo do ícone */
+.ouv-contato-circulo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.10);
+  border: 1px solid rgba(201,168,76,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.ouv-contato-item:hover .ouv-contato-circulo {
+  background: rgba(201,168,76,0.16);
+}
+
+.ouv-contato-circulo .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--dourado);
+  opacity: 0.80;
+}
+
+/* Texto do contato */
+.ouv-contato-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ouv-contato-orgao {
+  font-family: var(--fonte-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--creme-suave);
+  letter-spacing: 0.02em;
+}
+
+.ouv-contato-desc {
+  font-family: var(--fonte-serif);
+  font-size: 11.5px;
+  font-style: italic;
+  color: rgba(245,230,200,0.38);
+  letter-spacing: 0.05em;
+}
+
+/* Número/link de telefone */
+.ouv-contato-numero {
+  font-family: var(--fonte-ui);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--dourado-claro);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 100px;
+  background: rgba(201,168,76,0.06);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease-spring);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ouv-contato-numero:hover {
+  background: rgba(201,168,76,0.14);
+  border-color: rgba(201,168,76,0.44);
+  color: #fff;
+  transform: scale(1.04);
+}
+
+/* Divisor ornamentado */
+.ouv-divisor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 8px;
+}
+
+.ouv-divisor-linha {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,168,76,0.20), transparent);
+  opacity: 0.6;
+}
+
+.ouv-divisor-linha:last-child {
+  background: linear-gradient(270deg, rgba(201,168,76,0.20), transparent);
+}
+
+.ouv-divisor-txt {
+  font-family: var(--fonte-ui);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.45);
+}
+
+/* ── Resumo do relato selecionado ── */
+.ouv-relato-resumo {
+  margin-top: auto;
+  padding: 14px 16px;
+  border: 1px solid rgba(201,168,76,0.10);
+  border-radius: 12px;
+  background: rgba(245,230,200,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ouv-resumo-linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ouv-resumo-label {
+  font-family: var(--fonte-ui);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.50);
+  flex-shrink: 0;
+}
+
+.ouv-resumo-valor {
+  font-family: var(--fonte-serif);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(245,230,200,0.60);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .ouv-grid { grid-template-columns: 1fr; }
+  .ouv-card-contatos { min-height: unset; }
+}
+
+@media (max-width: 600px) {
+  .ouv-chip { font-size: 11px; padding: 5px 11px; }
+  .ouv-contato-numero { font-size: 12px; padding: 5px 11px; }
+  .ouv-contato-item { flex-wrap: wrap; }
 }

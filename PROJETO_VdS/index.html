@@ -212,24 +212,7 @@
               <input id="r-local-texto" class="rel-input rel-input--icon" type="text" placeholder="Ex.: Rua 0, 123" />
             </div>
           </div>
-          <div class="rel-campo rel-campo--grow">
-            <label class="rel-label">Marcar no Mapa</label>
-            <div class="rel-mapa-wrap">
-              <iframe id="rel-mapa-iframe"
-                class="rel-mapa"
-                src="https://maps.google.com/maps?q=São+João+del-Rei,+MG,+Brasil&output=embed"
-                allowfullscreen loading="lazy"
-                title="Selecionar local no mapa">
-              </iframe>
-              <div class="rel-mapa-overlay" id="rel-mapa-overlay" style="display:none">
-                <span class="material-symbols-outlined" style="font-size:32px;color:#c9a84c;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.7))">location_on</span>
-              </div>
-              <button type="button" class="rel-mapa-btn" id="rel-btn-pin" title="Salvar posição atual do mapa">
-                <span class="material-symbols-outlined" style="font-size:16px">push_pin</span>
-                Salvar posição
-              </button>
-            </div>
-          </div>
+          
           <div class="rel-campo">
             <label class="rel-label" for="r-data">Data da Ocorrência</label>
             <div class="rel-input-icon-wrap">
@@ -283,7 +266,7 @@
 
       <div class="relatar-acoes">
         <button type="button" class="rel-btn-limpar" onclick="limparRelato()">
-          <span class="material-symbols-outlined" style="font-size:17px">restart_alt</span>
+          <span class="material-symbols-outlined" style="font-size:17px">mop</span>
           Limpar formulário
         </button>
         <button type="button" class="rel-btn-enviar" onclick="enviarRelato()">
@@ -297,23 +280,117 @@
 
     <!-- Aba ouvidoria -->
     <section id="ouvidoria" style="display:none">
+
       <header class="topbar">
         <div class="topbar-titulo">
+          <span class="topbar-subtitulo">São João del-Rei</span>
           <h1 class="topbar-h1">Ouvidoria</h1>
+        </div>
+      </header>
 
+      <div class="ouv-grid">
+
+        <!--  Selecionar relato e categoria -->
+        <div class="rel-card ouv-card-selecao">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">manage_search</span>
+            <span class="rel-card-titulo">Identificar o Problema</span>
+          </div>
+
+          <!-- Relato registrado -->
           <div class="rel-campo">
-            <label class="rel-label" for="o-categoria">Categoria do relato</label>
-            <select id="o-categoria" class="slct">
-                <option value="Energia">Energia</option>
+            <label class="rel-label" for="ouv-relato">Relato Registrado</label>
+            <div class="ouv-select-wrap">
+              <span class="material-symbols-outlined ouv-select-icone">assignment</span>
+              <select id="ouv-relato" class="ouv-select" onchange="ouvidoriaAtualizar()">
+                <option value="">Selecione um relato</option>
+              </select>
+              <span class="material-symbols-outlined ouv-select-seta">expand_more</span>
+            </div>
+            <p class="ouv-hint" id="ouv-hint-relato" style="display:none">
+              <span class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px">info</span>
+              Nenhum relato registrado ainda
+            </p>
+          </div>
+
+          <!-- Categoria -->
+          <div class="rel-campo">
+            <label class="rel-label" for="ouv-categoria">Categoria do Problema</label>
+            <div class="ouv-select-wrap">
+              <span class="material-symbols-outlined ouv-select-icone">label</span>
+              <select id="ouv-categoria" class="ouv-select" onchange="ouvidoriaAtualizar()">
+                <option value="">Selecione a categoria</option>
                 <option value="Buracos">Buracos</option>
+                <option value="Energia">Energia</option>
                 <option value="Transportes públicos">Transportes públicos</option>
                 <option value="Água">Água</option>
                 <option value="Serviços Públicos">Serviços Públicos</option>
-            </select>
+              </select>
+              <span class="material-symbols-outlined ouv-select-seta">expand_more</span>
+            </div>
           </div>
+
+          <div class="ouv-chips">
+            <button class="ouv-chip" onclick="ouvidoriaSetCategoria('Buracos')">
+              <span class="material-symbols-outlined" style="font-size:15px">construction</span>
+              Buracos
+            </button>
+            <button class="ouv-chip" onclick="ouvidoriaSetCategoria('Energia')">
+              <span class="material-symbols-outlined" style="font-size:15px">bolt</span>
+              Energia
+            </button>
+            <button class="ouv-chip" onclick="ouvidoriaSetCategoria('Transportes públicos')">
+              <span class="material-symbols-outlined" style="font-size:15px">directions_bus</span>
+              Transporte
+            </button>
+            <button class="ouv-chip" onclick="ouvidoriaSetCategoria('Água')">
+              <span class="material-symbols-outlined" style="font-size:15px">water_drop</span>
+              Água
+            </button>
+            <button class="ouv-chip" onclick="ouvidoriaSetCategoria('Serviços Públicos')">
+              <span class="material-symbols-outlined" style="font-size:15px">apartment</span>
+              Serviços
+            </button>
+          </div>
+
         </div>
-      </header>
+
+        <!-- Seção: Contatos responsáveis -->
+        <div class="rel-card ouv-card-contatos">
+          <div class="rel-card-header">
+            <span class="material-symbols-outlined rel-card-icone">contacts</span>
+            <span class="rel-card-titulo">Números Responsáveis</span>
+          </div>
+
+          <!-- Estado vazio -->
+          <div class="ouv-contatos-vazio" id="ouv-estado-vazio">
+            <span class="material-symbols-outlined ouv-vazio-icone">headset_mic</span>
+            <p class="ouv-vazio-txt">Selecione uma categoria<br/>para ver os contatos</p>
+          </div>
+
+          <!-- Lista de contatos -->
+          <div class="ouv-contatos-lista" id="ouv-lista-contatos" style="display:none"></div>
+
+          <!-- Resumo do relato selecionado -->
+          <div class="ouv-relato-resumo" id="ouv-relato-resumo" style="display:none">
+            <div class="ouv-resumo-linha">
+              <span class="material-symbols-outlined" style="font-size:15px;color:var(--dourado);opacity:.7">assignment_turned_in</span>
+              <span class="ouv-resumo-label">Relato:</span>
+              <span class="ouv-resumo-valor" id="ouv-resumo-nome">—</span>
+            </div>
+            <div class="ouv-resumo-linha">
+              <span class="material-symbols-outlined" style="font-size:15px;color:var(--dourado);opacity:.7">category</span>
+              <span class="ouv-resumo-label">Categoria:</span>
+              <span class="ouv-resumo-valor" id="ouv-resumo-cat">—</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
+
 
 
     <!-- Aba visualizar -->
