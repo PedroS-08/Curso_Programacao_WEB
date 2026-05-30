@@ -51,13 +51,6 @@
 
     </nav>
 
-    <div class="sidebar-bottom">
-      <a href="#" class="nav-link" title="Configurações" onclick="aba('configuracoes')">
-        <span class="material-symbols-outlined icone">settings</span>
-        <span class="nav-label">Configurações</span>
-      </a>
-    </div>
-
   </aside>
 
 
@@ -395,11 +388,26 @@
 
     <!-- Aba visualizar -->
     <section id="visualizar" style="display:none">
+ 
       <header class="topbar">
         <div class="topbar-titulo">
+          <span class="topbar-subtitulo">São João del-Rei</span>
           <h1 class="topbar-h1">Visualizar</h1>
         </div>
       </header>
+    
+      <!-- Estado vazio (nenhum relato ainda) -->
+      <div class="vis-vazio" id="vis-vazio">
+        <span class="material-symbols-outlined vis-vazio-icone">campaign</span>
+        <p class="vis-vazio-titulo">Nenhum relato ainda</p>
+        <p class="vis-vazio-sub">
+          Nenhum usuário registrou relatos na aba <em>Relatar</em>
+        </p>
+      </div>
+    
+      <!-- Grid de relatos -->
+      <div class="vis-grid" id="vis-grid" style="display:none"></div>
+    
     </section>
 
 
@@ -512,17 +520,10 @@
     </section> <!-- Fim aba perfil -->
 
 
-    <!-- Aba configuracoes -->
-    <section id="configuracoes" style="display:none">
-      <header class="topbar">
-        <div class="topbar-titulo">
-          <h1 class="topbar-h1">Configurações</h1>
-        </div>
-      </header>
-    </section>
 
-
+    <footer>© 2026 Pedro Silveira • Todos os direitos reservados.</footer>
   </main>
+  
   <script src="./script.js"></script>
 </body>
 </html>

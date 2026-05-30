@@ -9,8 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(this.files[0]);
   });
 
+  document.getElementById('perfil-foto-input')?.addEventListener('change', function () {
+    if (!this.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.getElementById('perfil-avatar-img');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.querySelector('.perfil-avatar-icone').style.display = 'none';
+    };
+    reader.readAsDataURL(this.files[0]);
+  });
 });
 
+/* ── Preview de foto ── */
 function mostrarPreviewFoto(src) {
   const area = document.getElementById('rel-preview-area');
   if (!area) return;
@@ -37,29 +49,46 @@ function removerFoto() {
 
 function limparRelato() {
   ['r-nome-problema', 'r-descricao', 'r-usuario', 'r-local-texto'].forEach(id => {
-    document.getElementById(id).value = '';
+    const el = document.getElementById(id);
+    if (el) el.value = '';
   });
-  document.getElementById('r-data').value = new Date().toISOString().split('T')[0];
-
-  document.getElementById('rel-mapa-overlay').style.display = 'none';
-
-  const btnPin = document.getElementById('rel-btn-pin');
-  if (btnPin) {
-    btnPin.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px">push_pin</span> Salvar posição';
-    btnPin.style.borderColor = btnPin.style.color = '';
-  }
-
+  const campoData = document.getElementById('r-data');
+  if (campoData) campoData.value = new Date().toISOString().split('T')[0];
   removerFoto();
 }
 
 function enviarRelato() {
-  const nome = document.getElementById('r-nome-problema').value.trim();
+  const nome     = document.getElementById('r-nome-problema').value.trim();
   const descricao = document.getElementById('r-descricao').value.trim();
-  if (!nome)     return destacarCampo('r-nome-problema');
-  if (!descricao) return destacarCampo('r-descricao');
+  const local    = document.getElementById('r-local-texto').value.trim();
+  const usuario  = document.getElementById('r-usuario').value.trim();
+  const data     = document.getElementById('r-data').value;
+
+  if (!nome)      return destacarCampo('r-nome-problema');
+  if (!descricao)  return destacarCampo('r-descricao');
+
+  /* Captura imagem do preview, se houver */
+  const previewImg = document.querySelector('#rel-preview-area img');
+  const fotoSrc    = previewImg ? previewImg.src : null;
+
+  /* Adiciona ao array global de relatos */
+  const relato = {
+    id:        Date.now(),
+    nome,
+    descricao,
+    local:     local || 'Local não informado',
+    usuario:   usuario || 'Anônimo',
+    data,
+    foto:      fotoSrc,
+    categoria: document.getElementById('ouv-categoria')?.value || '',
+    joias:  0,
+    joiados: false
+  };
+
+  VDS_RELATOS.push(relato);
+
   mostrarToast('Relato enviado com sucesso!');
-  const cat = document.getElementById('ouv-categoria')?.value || '';
-  ouvidoriaAdicionarRelato(nome, cat);
+  ouvidoriaAdicionarRelato(nome, relato.categoria);
   limparRelato();
 }
 
@@ -81,13 +110,12 @@ function destacarCampo(id) {
   const el = document.getElementById(id);
   if (!el) return;
   el.style.borderColor = 'rgba(220,80,80,.6)';
-  el.style.boxShadow = '0 0 0 3px rgba(220,80,80,.1)';
+  el.style.boxShadow   = '0 0 0 3px rgba(220,80,80,.1)';
   el.focus();
   setTimeout(() => { el.style.borderColor = el.style.boxShadow = ''; }, 2200);
 }
 
-// Prfil
-
+/* ── Perfil ── */
 function alternarAuthAba(qual) {
   const eCriar = qual === 'criar';
   document.getElementById('auth-form-criar').style.display = eCriar ? 'flex' : 'none';
@@ -95,159 +123,98 @@ function alternarAuthAba(qual) {
   document.getElementById('btn-aba-criar').classList.toggle('auth-aba--ativa',  eCriar);
   document.getElementById('btn-aba-login').classList.toggle('auth-aba--ativa', !eCriar);
 }
- 
- 
+
 function alternarSenha(inputId, btn) {
-  const input = document.getElementById(inputId);
+  const input  = document.getElementById(inputId);
   const visivel = input.type === 'text';
-  input.type = visivel ? 'password' : 'text';
+  input.type   = visivel ? 'password' : 'text';
   btn.querySelector('.material-symbols-outlined').textContent = visivel ? 'visibility' : 'visibility_off';
 }
- 
+
 function criarConta() {
   const nome    = document.getElementById('auth-nome').value.trim();
   const contato = document.getElementById('auth-contato-criar').value.trim();
   const senha   = document.getElementById('auth-senha-criar').value;
- 
   if (!nome)    return destacarCampo('auth-nome');
   if (!contato) return destacarCampo('auth-contato-criar');
   if (!senha)   return destacarCampo('auth-senha-criar');
- 
   entrarComNome(nome);
   mostrarToast('Conta criada com sucesso!');
 }
- 
+
 function fazerLogin() {
   const contato = document.getElementById('auth-contato-login').value.trim();
   const senha   = document.getElementById('auth-senha-login').value;
- 
   if (!contato) return destacarCampo('auth-contato-login');
   if (!senha)   return destacarCampo('auth-senha-login');
   entrarComNome(contato);
   mostrarToast('Login realizado com sucesso!');
 }
- 
+
 function entrarComNome(nome) {
   document.getElementById('perfil-nome').textContent = nome;
   document.getElementById('perfil-deslogado').style.display = 'none';
   document.getElementById('perfil-logado').style.display    = 'flex';
 }
- 
+
 function sair() {
-  /* Limpa campos */
-  ['auth-nome', 'auth-contato-criar', 'auth-senha-criar',
-   'auth-contato-login', 'auth-senha-login'].forEach(id => {
+  ['auth-nome','auth-contato-criar','auth-senha-criar',
+   'auth-contato-login','auth-senha-login'].forEach(id => {
     document.getElementById(id).value = '';
   });
- 
-  /* Reseta avatar */
   const img = document.getElementById('perfil-avatar-img');
   img.src = '';
   img.style.display = 'none';
   document.querySelector('.perfil-avatar-icone').style.display = '';
   document.getElementById('perfil-foto-input').value = '';
- 
   document.getElementById('perfil-logado').style.display    = 'none';
   document.getElementById('perfil-deslogado').style.display = 'flex';
   alternarAuthAba('criar');
 }
- 
+
+/* ── Ouvidoria ── */
 const OUV_CONTATOS = {
   'Buracos': [
-    {
-      orgao:  'Secretaria de Obras',
-      desc:   'Manutenção de vias e pavimentação',
-      numero: '(32) 3379-7200',
-      icone:  'construction'
-    },
-    {
-      orgao:  'SAAE — Fiscalização',
-      desc:   'Problemas em calçadas e bueiros',
-      numero: '(32) 3379-7300',
-      icone:  'engineering'
-    }
+    { orgao: 'Secretaria de Obras',  desc: 'Manutenção de vias e pavimentação', numero: '(32) 3379-7200', icone: 'construction' },
+    { orgao: 'SAAE — Fiscalização',  desc: 'Problemas em calçadas e bueiros',   numero: '(32) 3379-7300', icone: 'engineering'  }
   ],
   'Energia': [
-    {
-      orgao:  'CEMIG Atendimento',
-      desc:   'Falta de luz, poste danificado',
-      numero: '0800 721 0196',
-      icone:  'bolt'
-    },
-    {
-      orgao:  'Prefeitura — Iluminação',
-      desc:   'Iluminação pública municipal',
-      numero: '(32) 3379-7150',
-      icone:  'light_mode'
-    }
+    { orgao: 'CEMIG Atendimento',       desc: 'Falta de luz, poste danificado',   numero: '0800 721 0196',  icone: 'bolt'       },
+    { orgao: 'Prefeitura — Iluminação', desc: 'Iluminação pública municipal',      numero: '(32) 3379-7150', icone: 'light_mode' }
   ],
   'Transportes públicos': [
-    {
-      orgao:  'Sec. de Transportes',
-      desc:   'Ônibus, horários e linhas urbanas',
-      numero: '(32) 3379-7400',
-      icone:  'directions_bus'
-    },
-    {
-      orgao:  'DFTRANS — Fiscalização',
-      desc:   'Denúncias sobre transporte público',
-      numero: '(32) 3379-7410',
-      icone:  'report'
-    }
+    { orgao: 'Sec. de Transportes',    desc: 'Ônibus, horários e linhas urbanas',     numero: '(32) 3379-7400', icone: 'directions_bus' },
+    { orgao: 'DFTRANS — Fiscalização', desc: 'Denúncias sobre transporte público',    numero: '(32) 3379-7410', icone: 'report'         }
   ],
   'Água': [
-    {
-      orgao:  'COPASA',
-      desc:   'Abastecimento e esgoto',
-      numero: '0800 031 0056',
-      icone:  'water_drop'
-    },
-    {
-      orgao:  'SAAE São João del-Rei',
-      desc:   'Serviço Autônomo de Água e Esgoto',
-      numero: '(32) 3379-7500',
-      icone:  'plumbing'
-    }
+    { orgao: 'COPASA',                  desc: 'Abastecimento e esgoto',               numero: '0800 031 0056',  icone: 'water_drop' },
+    { orgao: 'SAAE São João del-Rei',   desc: 'Serviço Autônomo de Água e Esgoto',    numero: '(32) 3379-7500', icone: 'plumbing'   }
   ],
   'Serviços Públicos': [
-    {
-      orgao:  'Prefeitura Municipal',
-      desc:   'Central de atendimento ao cidadão',
-      numero: '(32) 3379-7000',
-      icone:  'apartment'
-    },
-    {
-      orgao:  'Ouvidoria Geral',
-      desc:   'Reclamações e sugestões gerais',
-      numero: '(32) 3379-7010',
-      icone:  'headset_mic'
-    }
+    { orgao: 'Prefeitura Municipal',  desc: 'Central de atendimento ao cidadão',  numero: '(32) 3379-7000', icone: 'apartment'   },
+    { orgao: 'Ouvidoria Geral',       desc: 'Reclamações e sugestões gerais',      numero: '(32) 3379-7010', icone: 'headset_mic' }
   ]
 };
 
-const OUV_RELATOS = [];  
+/* Array global de relatos (compartilhado com Visualizar) */
+const VDS_RELATOS  = [];
+const OUV_RELATOS  = VDS_RELATOS; /* alias para compatibilidade */
 
-/* ── Inicialização da aba Ouvidoria ── */
 function ouvidoriaInit() {
   _ouvidoriaPopularSelectRelatos();
 }
 
-/* Popula o select de relatos com os registros existentes */
 function _ouvidoriaPopularSelectRelatos() {
   const sel  = document.getElementById('ouv-relato');
   const hint = document.getElementById('ouv-hint-relato');
   if (!sel) return;
-
-  /* Mantém apenas o placeholder */
   while (sel.options.length > 1) sel.remove(1);
-
-  if (OUV_RELATOS.length === 0) {
+  if (VDS_RELATOS.length === 0) {
     if (hint) hint.style.display = 'flex';
     return;
   }
-
   if (hint) hint.style.display = 'none';
-  OUV_RELATOS.forEach((r, i) => {
+  VDS_RELATOS.forEach((r, i) => {
     const opt = document.createElement('option');
     opt.value = i;
     opt.textContent = r.nome;
@@ -255,27 +222,20 @@ function _ouvidoriaPopularSelectRelatos() {
   });
 }
 
-/* Reage a mudança de qualquer select */
 function ouvidoriaAtualizar() {
-  const selRelato = document.getElementById('ouv-relato');
-  const selCat    = document.getElementById('ouv-categoria');
+  const selRelato  = document.getElementById('ouv-relato');
+  const selCat     = document.getElementById('ouv-categoria');
   if (!selRelato || !selCat) return;
 
-  const idx      = selRelato.value;
-  const catSelect = selCat.value;
+  const idx        = selRelato.value;
+  let   categoria  = selCat.value;
 
-  /* Se um relato foi escolhido, preeenche a categoria dele */
-  let categoria = catSelect;
-  if (idx !== '' && OUV_RELATOS[idx]) {
-    const relato = OUV_RELATOS[idx];
-    if (relato.categoria) {
-      selCat.value = relato.categoria;
-      categoria = relato.categoria;
-    }
-
-    const resumo = document.getElementById('ouv-relato-resumo');
+  if (idx !== '' && VDS_RELATOS[idx]) {
+    const relato = VDS_RELATOS[idx];
+    if (relato.categoria) { selCat.value = categoria = relato.categoria; }
     document.getElementById('ouv-resumo-nome').textContent = relato.nome;
     document.getElementById('ouv-resumo-cat').textContent  = relato.categoria || '—';
+    const resumo = document.getElementById('ouv-relato-resumo');
     if (resumo) resumo.style.display = 'flex';
   }
 
@@ -283,7 +243,6 @@ function ouvidoriaAtualizar() {
     c.classList.toggle('ouv-chip--ativo', c.textContent.trim().includes(categoria));
   });
 
-  /* Renderiza contatos */
   _ouvidoriaRenderContatos(categoria);
 }
 
@@ -294,22 +253,18 @@ function ouvidoriaSetCategoria(cat) {
 }
 
 function _ouvidoriaRenderContatos(categoria) {
-  const vazio = document.getElementById('ouv-estado-vazio');
-  const lista = document.getElementById('ouv-lista-contatos');
+  const vazio   = document.getElementById('ouv-estado-vazio');
+  const lista   = document.getElementById('ouv-lista-contatos');
   if (!lista) return;
-
   const contatos = OUV_CONTATOS[categoria] || [];
-
   if (!categoria || contatos.length === 0) {
     vazio.style.display = 'flex';
     lista.style.display = 'none';
     lista.innerHTML = '';
     return;
   }
-
   vazio.style.display = 'none';
   lista.style.display = 'flex';
-
   lista.innerHTML = `
     <div class="ouv-divisor">
       <div class="ouv-divisor-linha"></div>
@@ -335,17 +290,104 @@ function _ouvidoriaRenderContatos(categoria) {
 }
 
 function ouvidoriaAdicionarRelato(nome, categoria) {
-  OUV_RELATOS.push({ nome, categoria });
   _ouvidoriaPopularSelectRelatos();
 }
-/* ── Atualiza o select de relatos quando a aba Ouvidoria é aberta ── */
-const _abaOriginal = typeof aba === 'function' ? aba : null;
 
+/* ── Visualizar ── */
+function visualizarInit() {
+  const grid  = document.getElementById('vis-grid');
+  const vazio = document.getElementById('vis-vazio');
+  if (!grid || !vazio) return;
+
+  grid.innerHTML = '';
+
+  if (VDS_RELATOS.length === 0) {
+    vazio.style.display = 'flex';
+    grid.style.display  = 'none';
+    return;
+  }
+
+  vazio.style.display = 'none';
+  grid.style.display  = 'grid';
+
+  VDS_RELATOS.forEach((r, i) => {
+    const card = document.createElement('div');
+    card.className = 'vis-card';
+    card.style.animationDelay = `${i * 0.07}s`;
+
+    const fotoHTML = r.foto
+      ? `<div class="vis-card-img-wrap">
+           <img src="${r.foto}" alt="${r.nome}" class="vis-card-img" />
+           <div class="vis-card-img-overlay"></div>
+         </div>`
+      : `<div class="vis-card-sem-foto">
+           <span class="material-symbols-outlined vis-card-sem-foto-icone">image_not_supported</span>
+         </div>`;
+
+    const catHTML = r.categoria
+      ? `<span class="vis-card-cat">${r.categoria}</span>`
+      : '';
+
+    card.innerHTML = `
+      ${fotoHTML}
+      <div class="vis-card-corpo">
+        <div class="vis-card-meta">
+          ${catHTML}
+          <span class="vis-card-data">${formatarData(r.data)}</span>
+        </div>
+        <h3 class="vis-card-nome">${r.nome}</h3>
+        <div class="vis-card-local">
+          <span class="material-symbols-outlined vis-card-local-icone">location_on</span>
+          <span class="vis-card-local-txt">${r.local}</span>
+        </div>
+        <div class="vis-card-rodape">
+          <span class="vis-card-autor">
+            <span class="material-symbols-outlined" style="font-size:13px;opacity:.5">person</span>
+            ${r.usuario}
+          </span>
+          <button class="vis-btn-joia ${r.joiados ? 'vis-btn-joia--ativa' : ''}"
+                  onclick="toggleEstrela(${i}, this)"
+                  title="${r.joiados ? 'Remover apoio' : 'Apoiar este relato'}">
+            <span class="material-symbols-outlined vis-joia-icone">${r.joiados ? 'thumb_up' : 'thumb_up'}</span>
+            <span class="vis-joia-count">${r.joias}</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function toggleEstrela(index, btn) {
+  const relato = VDS_RELATOS[index];
+  if (!relato) return;
+
+  relato.joiados = !relato.joiados;
+  relato.joias += relato.joiados ? 1 : -1;
+  if (relato.joias < 0) relato.joias = 0;
+
+  btn.classList.toggle('vis-btn-joia--ativa', relato.joiados);
+  btn.querySelector('.vis-joia-count').textContent = relato.joias;
+
+  /* micro-animação */
+  btn.classList.add('vis-btn-joia--pulso');
+  setTimeout(() => btn.classList.remove('vis-btn-joia--pulso'), 400);
+}
+
+function formatarData(dataStr) {
+  if (!dataStr) return '';
+  const [ano, mes, dia] = dataStr.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
+
+/* ── Navegação entre abas ── */
 function aba(secao) {
   document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
   document.getElementById(secao).style.display = 'block';
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   event.currentTarget.classList.add('active');
 
-  if (secao === 'ouvidoria') ouvidoriaInit();
+  if (secao === 'ouvidoria')  ouvidoriaInit();
+  if (secao === 'visualizar') visualizarInit();
 }
