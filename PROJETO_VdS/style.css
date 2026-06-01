@@ -1,30 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
-  --azul-fundo:     #040d1c;
-  --azul-medio:     #071428;
-  --azul-escuro:    #020810;
-  --azul-profundo:  #010510;
+  --azul-fundo: #040d1c;
+  --azul-medio: #071428;
+  --azul-escuro: #020810;
+  --azul-profundo: #010510;
 
-  --creme:          #f5e6c8;
-  --creme-suave:    #eeddb0;
-  --creme-escuro:   #d4c49a;
+  --creme: #f5e6c8;
+  --creme-suave: #eeddb0;
+  --creme-escuro: #d4c49a;
 
-  --dourado:        #c9a84c;
-  --dourado-claro:  #e8c97a;
+  --dourado: #c9a84c;
+  --dourado-claro: #e8c97a;
   --dourado-escuro: #9e7a2e;
 
   --sidebar-fechada: 72px;
-  --sidebar-aberta:  220px;
+  --sidebar-aberta: 220px;
 
   --fonte-display: 'Playfair Display', Georgia, serif;
-  --fonte-serif:   'Cormorant Garamond', Georgia, serif;
-  --fonte-ui:      'DM Sans', sans-serif;
+  --fonte-serif: 'Cormorant Garamond', Georgia, serif;
+  --fonte-ui: 'DM Sans', sans-serif;
 
-  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --radius-card:  16px;
+  --radius-card: 16px;
   --radius-frame: 28px;
 }
 
@@ -184,6 +184,7 @@ body::after {
 }
 
 .nav-link .icone {
+  color: #091d3b;
   font-size: 28px;
   flex-shrink: 0;
   width: 24px;
@@ -191,7 +192,11 @@ body::after {
   transition: transform 0.25s var(--ease-spring);
 }
 
-.nav-link:hover .icone { transform: scale(1.12); }
+.nav-link:hover .icone {
+  transform: scale(1.12) rotate(1turn);  
+  color: #003a91d2;
+  transition: transform 0.8s ease, color 0.2s ease; 
+}
 
 .nav-label {
   opacity: 0;
@@ -1922,11 +1927,11 @@ input[type="date"].rel-input { color-scheme: dark; }
  
 
 footer {
-  font-size: var(--fonte-display);
   font-size: 0.75rem;
-  color:#e8c97a60;
+  color: #e8c97a60;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 14rem;
+  margin-top: 4rem;
+  padding-bottom: 1rem;
 }
