@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Preenche a data de hoje no campo de data
   const campoData = document.getElementById('r-data');
   if (campoData) campoData.value = new Date().toISOString().split('T')[0];
 
+  // Preview de foto do relato
   document.getElementById('r-foto-input')?.addEventListener('change', function () {
     if (!this.files[0]) return;
     const reader = new FileReader();
@@ -9,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(this.files[0]);
   });
 
+  // Foto de perfil
   document.getElementById('perfil-foto-input')?.addEventListener('change', function () {
     if (!this.files[0]) return;
     const reader = new FileReader();
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ── Preview de foto ── */
+// Preview de foto
 function mostrarPreviewFoto(src) {
   const area = document.getElementById('rel-preview-area');
   if (!area) return;
@@ -57,41 +60,135 @@ function limparRelato() {
   removerFoto();
 }
 
-function enviarRelato() {
-  const nome     = document.getElementById('r-nome-problema').value.trim();
+async function enviarRelato() {
+  // Pega os valores dos campos
+  const nome      = document.getElementById('r-nome-problema').value.trim();
   const descricao = document.getElementById('r-descricao').value.trim();
-  const local    = document.getElementById('r-local-texto').value.trim();
-  const usuario  = document.getElementById('r-usuario').value.trim();
-  const data     = document.getElementById('r-data').value;
+  const local     = document.getElementById('r-local-texto').value.trim();
+  const usuario   = document.getElementById('r-usuario').value.trim();
+  const data      = document.getElementById('r-data').value;
+  const categoria = document.getElementById('ouv-categoria')?.value || '';
 
-  if (!nome)      return destacarCampo('r-nome-problema');
-  if (!descricao)  return destacarCampo('r-descricao');
+  if (!nome) return destacarCampo('r-nome-problema');
+  if (!descricao) return destacarCampo('r-descricao');
 
-  /* Captura imagem do preview, se houver */
+  // Pegar img do preview
   const previewImg = document.querySelector('#rel-preview-area img');
-  const fotoSrc    = previewImg ? previewImg.src : null;
+  const foto = previewImg ? previewImg.src : null;
 
-  /* Adiciona ao array global de relatos */
-  const relato = {
-    id:        Date.now(),
+  // Monta o objeto com dados q irão para o json
+  const payload = {
     nome,
     descricao,
-    local:     local || 'Local não informado',
-    usuario:   usuario || 'Anônimo',
+    local: local || 'Local não informado',
+    usuario: usuario || 'Anônimo',
     data,
-    foto:      fotoSrc,
-    categoria: document.getElementById('ouv-categoria')?.value || '',
-    joias:  0,
-    joiados: false
+    categoria,
+    foto, 
   };
 
-  VDS_RELATOS.push(relato);
+  // Bloquear cliques duplos
+  const btnEnviar = document.querySelector('.rel-btn-enviar');
+  if (btnEnviar) {
+    btnEnviar.disabled = true;
+    btnEnviar.style.opacity = '0.6';
+  }
 
-  mostrarToast('Relato enviado com sucesso!');
-  ouvidoriaAdicionarRelato(nome, relato.categoria);
-  limparRelato();
+  try {
+    // Envia os dados para o servidor com fetch
+    const resposta = await fetch('api.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    // Lê a resposta do json
+    const json = await resposta.json();
+
+    if (resposta.ok && json.status === 'sucesso') {
+      // Mensagem com textContentt
+      mostrarMensagemRelato('sucesso', `✓ ${json.mensagem}`);
+
+      // Adiciona ao array (p/ Visualizar e Ouvidoria )
+      VDS_RELATOS.push({
+        id:       json.id,
+        nome,
+        descricao,
+        local: local || 'Local não informado',
+        usuario: usuario || 'Anônimo',
+        data,
+        foto,
+        categoria,
+        joias: 0,
+        joiados: false,
+      });
+
+      ouvidoriaAdicionarRelato(nome, categoria);
+      limparRelato();
+
+    } else {
+      // ── Erro de validação
+      mostrarMensagemRelato('erro', `✕ ${json.mensagem || 'Ocorreu um erro ao enviar.'}`);
+    }
+
+  } catch (erro) {
+    // ── Erro de rede
+    console.error('Erro de rede ao enviar relato:', erro);
+    mostrarMensagemRelato('erro', '✕ Não foi possível conectar ao servidor. Tente novamente.');
+  } finally {
+
+    if (btnEnviar) {
+      btnEnviar.disabled = false;
+      btnEnviar.style.opacity = '';
+    }
+  }
 }
 
+// Mensagem
+function mostrarMensagemRelato(tipo, texto) {
+  let el = document.getElementById('rel-msg-feedback');
+
+  // Cria o elemento na primeira vez
+  if (!el) {
+    el = document.createElement('p');
+    el.id = 'rel-msg-feedback';
+    el.style.cssText = `
+      text-align: center;
+      font-family: var(--fonte-ui);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      padding: 10px 20px;
+      border-radius: 100px;
+      border: 1px solid transparent;
+      transition: opacity 0.35s ease;
+      margin-top: 4px;
+    `;
+    // Insere dps de relatar
+    const acoes = document.querySelector('.relatar-acoes');
+    if (acoes) acoes.insertAdjacentElement('afterend', el);
+  }
+
+  // Define a aparência
+  if (tipo === 'sucesso') {
+    el.style.color = 'rgba(120,220,140,0.90)';
+    el.style.borderColor = 'rgba(120,220,140,0.22)';
+    el.style.background  = 'rgba(120,220,140,0.06)';
+  } else {
+    el.style.color = 'rgba(245,120,120,0.90)';
+    el.style.borderColor = 'rgba(245,120,120,0.22)';
+    el.style.background  = 'rgba(245,120,120,0.06)';
+  }
+
+  // Atualiza o texto - textContent
+  el.textContent = texto;
+  el.style.opacity = '1';
+
+  // Some dps de 4 seg
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => { el.style.opacity = '0'; }, 4000);
+}
+
+// Toast padrão para varios usos
 function mostrarToast(mensagem) {
   let toast = document.getElementById('rel-toast-global');
   if (!toast) {
@@ -110,12 +207,12 @@ function destacarCampo(id) {
   const el = document.getElementById(id);
   if (!el) return;
   el.style.borderColor = 'rgba(220,80,80,.6)';
-  el.style.boxShadow   = '0 0 0 3px rgba(220,80,80,.1)';
+  el.style.boxShadow = '0 0 0 3px rgba(220,80,80,.1)';
   el.focus();
   setTimeout(() => { el.style.borderColor = el.style.boxShadow = ''; }, 2200);
 }
 
-/* ── Perfil ── */
+// Perfil
 function alternarAuthAba(qual) {
   const eCriar = qual === 'criar';
   document.getElementById('auth-form-criar').style.display = eCriar ? 'flex' : 'none';
@@ -172,33 +269,32 @@ function sair() {
   alternarAuthAba('criar');
 }
 
-/* ── Ouvidoria ── */
+// Ouvidoria
 const OUV_CONTATOS = {
   'Buracos': [
-    { orgao: 'Secretaria de Obras',  desc: 'Manutenção de vias e pavimentação', numero: '(32) 3379-7200', icone: 'construction' },
-    { orgao: 'SAAE — Fiscalização',  desc: 'Problemas em calçadas e bueiros',   numero: '(32) 3379-7300', icone: 'engineering'  }
+    { orgao: 'Secretaria de Obras', desc: 'Manutenção de vias e pavimentação', numero: '(32) 3379-7200', icone: 'construction'},
+    { orgao: 'SAAE — Fiscalização',  desc: 'Problemas em calçadas e bueiros', numero: '(32) 3379-7300', icone: 'engineering'}
   ],
   'Energia': [
-    { orgao: 'CEMIG Atendimento',       desc: 'Falta de luz, poste danificado',   numero: '0800 721 0196',  icone: 'bolt'       },
-    { orgao: 'Prefeitura — Iluminação', desc: 'Iluminação pública municipal',      numero: '(32) 3379-7150', icone: 'light_mode' }
+    { orgao: 'CEMIG Atendimento', desc: 'Falta de luz, poste danificado', numero: '0800 721 0196',  icone: 'bolt'},
+    { orgao: 'Prefeitura — Iluminação', desc: 'Iluminação pública municipal', numero: '(32) 3379-7150', icone: 'light_mode' }
   ],
   'Transportes públicos': [
-    { orgao: 'Sec. de Transportes',    desc: 'Ônibus, horários e linhas urbanas',     numero: '(32) 3379-7400', icone: 'directions_bus' },
-    { orgao: 'DFTRANS — Fiscalização', desc: 'Denúncias sobre transporte público',    numero: '(32) 3379-7410', icone: 'report'         }
+    { orgao: 'Sec. de Transportes', desc: 'Ônibus, horários e linhas urbanas', numero: '(32) 3379-7400', icone: 'directions_bus'},
+    { orgao: 'DFTRANS — Fiscalização', desc: 'Denúncias sobre transporte público', numero: '(32) 3379-7410', icone: 'report'}
   ],
   'Água': [
-    { orgao: 'COPASA',                  desc: 'Abastecimento e esgoto',               numero: '0800 031 0056',  icone: 'water_drop' },
-    { orgao: 'SAAE São João del-Rei',   desc: 'Serviço Autônomo de Água e Esgoto',    numero: '(32) 3379-7500', icone: 'plumbing'   }
+    { orgao: 'COPASA', desc: 'Abastecimento e esgoto', numero: '0800 031 0056', icone: 'water_drop' },
+    { orgao: 'DAMAE', desc: 'Serviço Autônomo de Água e Esgoto', numero: '(32) 3379-7500', icone: 'plumbing'}
   ],
   'Serviços Públicos': [
-    { orgao: 'Prefeitura Municipal',  desc: 'Central de atendimento ao cidadão',  numero: '(32) 3379-7000', icone: 'apartment'   },
-    { orgao: 'Ouvidoria Geral',       desc: 'Reclamações e sugestões gerais',      numero: '(32) 3379-7010', icone: 'headset_mic' }
+    { orgao: 'Prefeitura Municipal', desc: 'Central de atendimento ao cidadão', numero: '(32) 3379-7000', icone: 'apartment'},
+    { orgao: 'Ouvidoria Geral', desc: 'Reclamações e sugestões gerais', numero: '(32) 3379-7010', icone: 'headset_mic' }
   ]
 };
 
-/* Array global de relatos (compartilhado com Visualizar) */
-const VDS_RELATOS  = [];
-const OUV_RELATOS  = VDS_RELATOS; /* alias para compatibilidade */
+const VDS_RELATOS = [];
+const OUV_RELATOS = VDS_RELATOS;
 
 function ouvidoriaInit() {
   _ouvidoriaPopularSelectRelatos();
@@ -223,12 +319,12 @@ function _ouvidoriaPopularSelectRelatos() {
 }
 
 function ouvidoriaAtualizar() {
-  const selRelato  = document.getElementById('ouv-relato');
-  const selCat     = document.getElementById('ouv-categoria');
+  const selRelato = document.getElementById('ouv-relato');
+  const selCat = document.getElementById('ouv-categoria');
   if (!selRelato || !selCat) return;
 
-  const idx        = selRelato.value;
-  let   categoria  = selCat.value;
+  const idx = selRelato.value;
+  let categoria = selCat.value;
 
   if (idx !== '' && VDS_RELATOS[idx]) {
     const relato = VDS_RELATOS[idx];
@@ -253,8 +349,8 @@ function ouvidoriaSetCategoria(cat) {
 }
 
 function _ouvidoriaRenderContatos(categoria) {
-  const vazio   = document.getElementById('ouv-estado-vazio');
-  const lista   = document.getElementById('ouv-lista-contatos');
+  const vazio  = document.getElementById('ouv-estado-vazio');
+  const lista  = document.getElementById('ouv-lista-contatos');
   if (!lista) return;
   const contatos = OUV_CONTATOS[categoria] || [];
   if (!categoria || contatos.length === 0) {
@@ -293,7 +389,7 @@ function ouvidoriaAdicionarRelato(nome, categoria) {
   _ouvidoriaPopularSelectRelatos();
 }
 
-/* ── Visualizar ── */
+// Visualizar
 function visualizarInit() {
   const grid  = document.getElementById('vis-grid');
   const vazio = document.getElementById('vis-vazio');
@@ -325,8 +421,7 @@ function visualizarInit() {
          </div>`;
 
     const catHTML = r.categoria
-      ? `<span class="vis-card-cat">${r.categoria}</span>`
-      : '';
+      ? `<span class="vis-card-cat">${r.categoria}</span>` : '';
 
     card.innerHTML = `
       ${fotoHTML}
@@ -346,31 +441,26 @@ function visualizarInit() {
             ${r.usuario}
           </span>
           <button class="vis-btn-joia ${r.joiados ? 'vis-btn-joia--ativa' : ''}"
-                  onclick="toggleEstrela(${i}, this)"
+                  onclick="togglePositivo(${i}, this)"
                   title="${r.joiados ? 'Remover apoio' : 'Apoiar este relato'}">
-            <span class="material-symbols-outlined vis-joia-icone">${r.joiados ? 'thumb_up' : 'thumb_up'}</span>
+            <span class="material-symbols-outlined vis-joia-icone">thumb_up</span>
             <span class="vis-joia-count">${r.joias}</span>
           </button>
         </div>
       </div>
     `;
-
     grid.appendChild(card);
   });
 }
 
-function toggleEstrela(index, btn) {
+function togglePositivo(index, btn) {
   const relato = VDS_RELATOS[index];
   if (!relato) return;
-
   relato.joiados = !relato.joiados;
-  relato.joias += relato.joiados ? 1 : -1;
+  relato.joias  += relato.joiados ? 1 : -1;
   if (relato.joias < 0) relato.joias = 0;
-
   btn.classList.toggle('vis-btn-joia--ativa', relato.joiados);
   btn.querySelector('.vis-joia-count').textContent = relato.joias;
-
-  /* micro-animação */
   btn.classList.add('vis-btn-joia--pulso');
   setTimeout(() => btn.classList.remove('vis-btn-joia--pulso'), 400);
 }
@@ -381,7 +471,7 @@ function formatarData(dataStr) {
   return `${dia}/${mes}/${ano}`;
 }
 
-/* ── Navegação entre abas ── */
+// trocsr Abas
 function aba(secao) {
   document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
   document.getElementById(secao).style.display = 'block';

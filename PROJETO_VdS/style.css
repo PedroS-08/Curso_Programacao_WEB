@@ -52,8 +52,8 @@ body::before {
   inset: 0;
   background:
     radial-gradient(ellipse 70% 50% at 20% 5%,  rgba(201,168,76,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 60% at 85% 95%,  rgba(7,20,40,0.95)   0%, transparent 60%),
-    radial-gradient(ellipse 100% 50% at 50% 50%, rgba(2,8,16,0.5)     0%, transparent 100%),
+    radial-gradient(ellipse 50% 60% at 85% 95%,  rgba(7,20,40,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 50% at 50% 50%, rgba(2,8,16,0.5) 0%, transparent 100%),
     linear-gradient(170deg, #071428 0%, #040d1c 40%, #020810 70%, #010510 100%);
   pointer-events: none;
 }
@@ -91,7 +91,7 @@ body::after {
   inset: 0;
   background:
     radial-gradient(ellipse 60% 28% at 50% 0%,   rgba(255,255,255,0.22) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 45% at 50% 100%,  rgba(0,0,0,0.10)      0%, transparent 70%);
+    radial-gradient(ellipse 80% 45% at 50% 100%,  rgba(0,0,0,0.10) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -113,6 +113,7 @@ body::after {
   object-fit: contain;
   flex-shrink: 0;
 }
+
 
 .logo-sigla {
   font-family: var(--fonte-display);
@@ -194,7 +195,7 @@ body::after {
 
 .nav-link:hover .icone {
   transform: scale(1.12) rotate(1turn);  
-  color: #003a91d2;
+  color: #01265dd2;
   transition: transform 0.8s ease, color 0.2s ease; 
 }
 

@@ -178,18 +178,41 @@
             <span class="material-symbols-outlined rel-card-icone">edit_note</span>
             <span class="rel-card-titulo">Dados do Relato</span>
           </div>
+
           <div class="rel-campo">
             <label class="rel-label" for="r-nome-problema">Nome do Problema</label>
-            <input id="r-nome-problema" class="rel-input" type="text" placeholder="Ex.: Buraco na Rua 0" />
+            <input id="r-nome-problema" class="rel-input" type="text"
+                  placeholder="Ex.: Buraco na Rua 0" />
           </div>
+
           <div class="rel-campo rel-campo--grow">
             <label class="rel-label" for="r-descricao">Descrição</label>
-            <textarea id="r-descricao" class="rel-textarea" placeholder="Descreva o problema com detalhes…"></textarea>
+            <textarea id="r-descricao" class="rel-textarea"
+                      placeholder="Descreva o problema com detalhes…"></textarea>
           </div>
+
           <div class="rel-campo">
             <label class="rel-label" for="r-usuario">Seu Nome</label>
-            <input id="r-usuario" class="rel-input" type="text" placeholder="Identificação do denunciante" />
+            <input id="r-usuario" class="rel-input" type="text"
+                  placeholder="Identificação do denunciante" />
           </div>
+
+          <div class="rel-campo">
+            <label class="rel-label" for="ouv-categoria">Categoria</label>
+            <div class="ouv-select-wrap">
+              <span class="material-symbols-outlined ouv-select-icone">label</span>
+              <select id="ouv-categoria" class="ouv-select">
+                <option value="">Selecione a categoria</option>
+                <option value="Buracos">Buracos</option>
+                <option value="Energia">Energia</option>
+                <option value="Transportes públicos">Transportes públicos</option>
+                <option value="Água">Água</option>
+                <option value="Serviços Públicos">Serviços Públicos</option>
+              </select>
+              <span class="material-symbols-outlined ouv-select-seta">expand_more</span>
+            </div>
+          </div>
+
         </div>
 
         <!-- Localização e Data -->
