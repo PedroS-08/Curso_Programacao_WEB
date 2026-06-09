@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "nome": "Pedro Emanuel",
+        "contato": "pedro.esn08@gmail.com",
+        "senha_hash": "$2y$12$hYa16IcnS45W6xh0MPIdQ.T9grS.58kiJbwWvF8yrzvOeYBP10Ejy",
+        "cadastrado_em": "2026-06-08 22:43:45"
+    },
+    {
+        "id": 2,
+        "nome": "Nicolas Silveira",
+        "contato": "nick123@gmail.com",
+        "senha_hash": "$2y$12$XE6JkFyrRWuv83V1zLNEbeTtaC4cHFJvgEpmTOJio4vV1.t\/C52.y",
+        "cadastrado_em": "2026-06-08 22:46:21"
+    }
+]

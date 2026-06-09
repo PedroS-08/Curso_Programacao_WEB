@@ -45,13 +45,12 @@ $action = trim($dados['action'] ?? '');
 
 switch ($action) {
     case 'cadastro': _cadastro($dados); break;
-    case 'login': _login($dados);    break;
-    case 'relato': _relato($dados);   break;
-    case 'joia': _joia($dados);     break;
+    case 'login': _login($dados); break;
+    case 'relato': _relato($dados); break;
+    case 'joia': _joia($dados); break;
     default: _erro(400, 'Ação inválida.');
 }
 exit;
-
 
 // Açao criar conta/cadastro
 
@@ -61,16 +60,16 @@ function _cadastro(array $d): void
     $contato = trim($d['contato'] ?? '');
     $senha = $d['senha'] ?? '';
 
-    if (!$nome)    { _erro(422, 'O campo "nome" é obrigatório.');    return; }
+    if (!$nome) { _erro(422, 'O campo "nome" é obrigatório.');    return; }
     if (!$contato) { _erro(422, 'O campo "contato" é obrigatório.'); return; }
-    if (!$senha)   { _erro(422, 'O campo "senha" é obrigatório.');   return; }
+    if (!$senha) { _erro(422, 'O campo "senha" é obrigatório.');   return; }
 
     $usuarios = _lerJson(ARQ_USUARIOS);
 
     // Verifica duplicidade de contato
     foreach ($usuarios as $u) {
         if (strtolower($u['contato']) === strtolower($contato)) {
-            _erro(409, 'Usuário já cadastrado com este e-mail ou telefone.');
+            _erro(409, 'Usuário já cadastrado!');
             return;
         }
     }
@@ -100,7 +99,7 @@ function _cadastro(array $d): void
 function _login(array $d): void
 {
     $contato = trim($d['contato'] ?? '');
-    $senha   = $d['senha']        ?? '';
+    $senha   = $d['senha'] ?? '';
 
     if (!$contato) { _erro(422, 'O campo "contato" é obrigatório.'); return; }
     if (!$senha)   { _erro(422, 'O campo "senha" é obrigatório.');   return; }
@@ -168,10 +167,10 @@ function _relato(array $d): void
         'id' => count($relatos) + 1,
         'nome' => htmlspecialchars(trim($d['nome'])),
         'descricao' => htmlspecialchars(trim($d['descricao'])),
-        'local' => htmlspecialchars(trim($d['local']     ?? 'Local não informado')),
-        'usuario' => htmlspecialchars(trim($d['usuario']   ?? 'Anônimo')),
+        'local' => htmlspecialchars(trim($d['local'] ?? 'Local não informado')),
+        'usuario' => htmlspecialchars(trim($d['usuario'] ?? 'Anônimo')),
         'contato' => $contato,
-        'data' => htmlspecialchars(trim($d['data']      ?? '')),
+        'data' => htmlspecialchars(trim($d['data'] ?? '')),
         'categoria' => htmlspecialchars(trim($d['categoria'] ?? '')),
         'foto' => $d['foto'] ?? null,
         'joias' => 0,

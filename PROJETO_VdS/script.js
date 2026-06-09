@@ -485,7 +485,7 @@ function _ouvidoriaRenderContatos(categoria) {
   if (!categoria || contatos.length === 0) {
     vazio.style.display = 'flex';
     lista.style.display = 'none';
-    lista.innerHTML     = '';
+    lista.innerHTML = '';
     return;
   }
   vazio.style.display = 'none';
@@ -634,13 +634,13 @@ async function togglePositivo(id, btn) {
   // Sincroniza com servidor
   try {
     await fetch('api.php', {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({
-        action:  'joia',
+      body: JSON.stringify({
+        action: 'joia',
         id,
         contato: VDS_USUARIO_ATUAL.contato,
-        tipo:    jaJoiou ? 'remover' : 'adicionar',
+        tipo: jaJoiou ? 'remover' : 'adicionar',
       }),
     });
   } catch { /* Falha silenciosa*/ }
@@ -674,6 +674,6 @@ function aba(secao, link) {
   const alvo = link || (typeof event !== 'undefined' && event?.currentTarget);
   if (alvo) alvo.classList.add('active');
 
-  if (secao === 'ouvidoria')  ouvidoriaInit();
+  if (secao === 'ouvidoria') ouvidoriaInit();
   if (secao === 'visualizar') visualizarInit();
 }
