@@ -405,23 +405,23 @@ function sair() {
 const OUV_CONTATOS = {
   'Buracos': [
     { orgao: 'Secretaria de Obras', desc: 'Manutenção de vias e pavimentação', numero: '(32) 3379-7200', icone: 'construction'},
-    { orgao: 'SAAE — Fiscalização', desc: 'Problemas em calçadas e bueiros', numero: '(32) 3379-7300', icone: 'engineering'},
+    { orgao: 'Ouvidoria Geral', desc: 'Problemas em calçadas e bueiros', numero: '(32) 3379-2920', icone: 'engineering'},
   ],
   'Energia': [
-    { orgao: 'CEMIG Atendimento', desc: 'Falta de luz, poste danificado', numero: '0800 721 0196', icone: 'bolt'},
-    { orgao: 'Prefeitura — Iluminação', desc: 'Iluminação pública municipal', numero: '(32) 3379-7150', icone: 'light_mode'},
+    { orgao: 'CEMIG Atendimento', desc: 'Falta de luz, poste danificado', numero: '(32) 9981-4842', icone: 'bolt'},
+    { orgao: 'CEMIG Atendimento Rural', desc: 'Iluminação pública em áreas rurais', numero: '0800 721 6600', icone: 'light_mode'},
   ],
   'Transportes públicos': [
     { orgao: 'Sec. de Transportes', desc: 'Ônibus, horários e linhas urbanas', numero: '(32) 3379-7400', icone: 'directions_bus'},
-    { orgao: 'DFTRANS — Fiscalização', desc: 'Denúncias sobre transporte público',numero: '(32) 3379-7410', icone: 'report'},
+    { orgao: 'Atendimento DETRAN (MG)', desc: 'Denúncias sobre transporte público',numero: '155', icone: 'report'},
   ],
   'Água': [
-    { orgao: 'COPASA', desc: 'Abastecimento e esgoto', numero: '0800 031 0056',  icone: 'water_drop'},
-    { orgao: 'DAMAE', desc: 'Serviço Autônomo de Água e Esgoto', numero: '(32) 3379-7500', icone: 'plumbing'},
+    { orgao: 'COPASA', desc: 'Abastecimento e esgoto', numero: '0800 0300 115',  icone: 'water_drop'},
+    { orgao: 'DAMAE', desc: 'Serviço Autônomo de Água e Esgoto', numero: '(32) 3371-8080', icone: 'plumbing'},
   ],
   'Serviços Públicos': [
-    { orgao: 'Prefeitura Municipal', desc: 'Central de atendimento ao cidadão', numero: '(32) 3379-7000', icone: 'apartment'},
-    { orgao: 'Ouvidoria Geral', desc: 'Reclamações e sugestões gerais', numero: '(32) 3379-7010', icone: 'headset_mic'},
+    { orgao: 'Prefeitura Municipal', desc: 'Central de atendimento ao cidadão', numero: '(32) 3379-2900', icone: 'apartment'},
+    { orgao: 'Ouvidoria Geral', desc: 'Reclamações e sugestões gerais', numero: '(32) 3379-2920', icone: 'headset_mic'},
   ],
 };
 

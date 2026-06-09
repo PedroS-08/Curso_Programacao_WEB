@@ -12,5 +12,12 @@
         "contato": "nick123@gmail.com",
         "senha_hash": "$2y$12$XE6JkFyrRWuv83V1zLNEbeTtaC4cHFJvgEpmTOJio4vV1.t\/C52.y",
         "cadastrado_em": "2026-06-08 22:46:21"
+    },
+    {
+        "id": 3,
+        "nome": "Seu João",
+        "contato": "joao@email.com",
+        "senha_hash": "$2y$12$7nJLzsjf3Zw9aro7TxwbyuOoXIa.vJviHs0TS.UwwFkKNKWwZkwtG",
+        "cadastrado_em": "2026-06-09 14:26:06"
     }
 ]
